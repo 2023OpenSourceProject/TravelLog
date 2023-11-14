@@ -1,6 +1,9 @@
 import { useKakaoLoader as useKakaoLoaderOrigin } from "react-kakao-maps-sdk"
 
 export default function useKakaoLoader() {
+  const {
+    VITE_APP_KAKAO_API_KEY,
+  } = import.meta.env
   useKakaoLoaderOrigin({
     /** 
      * ※주의※ appkey의 경우 본인의 appkey를 사용하셔야 합니다.
@@ -8,7 +11,7 @@ export default function useKakaoLoader() {
      * 
      * @참고 https://apis.map.kakao.com/web/guide/
      */
-    appkey: "81e975d9883645614c4ff6ea33dfa5ae",
+    appkey: `${VITE_APP_KAKAO_API_KEY}`,
     libraries: ["clusterer", "drawing", "services"],
   })
 }
