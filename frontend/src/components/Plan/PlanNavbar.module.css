@@ -1,0 +1,96 @@
+.header{
+  display: grid;
+  grid-template-columns: 280px 3fr 210px;
+  background-color: #e9efef;
+  height: 80px;
+  align-items: center;
+
+  font-family: 'Poppins', sans-serif;
+}
+.headerLeft{
+  align-items: center;
+  display: flex;
+}
+.headerLeftPart{
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+
+.icon{
+ 
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: relative;
+  width:32px;
+  height:32px;
+}
+
+.planName{
+  display: flex;
+  font-size: 32px;
+}
+.date{
+  color: #999;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.days{
+  display: flex;
+
+  list-style: none;
+  text-align: center;
+  width: 60vw;
+  justify-content: start;
+  margin-right: 2rem;
+}
+
+.day{
+  height: auto;
+  margin-right: 20px;
+  color: #4a5568;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cancleBtn{
+  width: 80px;
+  height: 50px;
+  margin-right: 5px;
+  justify-content: center;
+  align-items: center;
+  border-width: 0;
+  border-radius: 15px;
+  background: #A7A7A7;
+
+  color: #FFF;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.saveBtn{
+  width: 80px;
+  height: 50px;
+  margin-left: 5px;
+  justify-content: center;
+  align-items: center;
+
+  border-width: 0;
+  border-radius: 15px;
+  background: var(--Primary, #43B97F);
+
+  color: #FFF;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+
+}
