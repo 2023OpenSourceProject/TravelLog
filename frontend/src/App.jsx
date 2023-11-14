@@ -5,6 +5,9 @@ import "./App.css";
 import MainPage from "./components/MainPage";
 import NewPlan from "./components/Plan/NewPlan";
 import NotFound from "./components/UI/NotFound";
+import FindPwdForm from "./components/Account/FindPwdForm";
+import LoginForm from "./components/Account/LoginForm";
+import RegisterForm from "./components/Account/RegisterForm";
 
 function App() {
   return (
@@ -13,8 +16,11 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/NewPlan/*" element={<NewPlan />}></Route>
+          <Route path="/Account/FindPwd" element={<FindPwdForm />}></Route>
+          <Route path="/Account/Login" element={<LoginForm />}></Route>
+          <Route path="/Account/Register" element={<RegisterForm />}></Route>
           <Route path="*" element={<NotFound/>}></Route>
-          <Route path="/account/*"></Route>
+
         </Routes>
       </BrowserRouter>
     </>
