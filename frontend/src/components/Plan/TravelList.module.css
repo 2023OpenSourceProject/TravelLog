@@ -1,0 +1,33 @@
+.travelList{
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-family: "Inter", sans-serif;
+  justify-content: center;
+}
+
+.listIcon{
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: relative;
+  width:28px;
+  height:24px;
+}
+
+
+.travelPlace{
+  margin-top: 10px;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.deleteIcon{
+  margin: 0;
+  margin-right: 10px;
+  position: relative;
+  width:28px;
+  height:24px;
+}
