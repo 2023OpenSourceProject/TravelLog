@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import icon from './assets/icon.png';
 
 import MainPage from "./components/MainPage";
 import NewPlan from "./components/Plan/NewPlan";
