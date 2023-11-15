@@ -3,11 +3,8 @@
   grid-template-rows: repeat(2, auto);
 }
 
-
-
-
-
 .body{
   display: grid;
   grid-template-columns: 280px auto;
 }
+
