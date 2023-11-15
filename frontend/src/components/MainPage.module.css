@@ -1,7 +1,6 @@
 img {
   height: 665px;
   flex-shrink: 0;
-
   margin-top: 2vw;
   display: flex;
 }
