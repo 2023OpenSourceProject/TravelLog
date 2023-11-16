@@ -26,10 +26,28 @@ const Navbar = () => {
       <div className="navbar-container">
         <Link to="/" style={{ textDecoration: "none"}}><div className="navbar-logo"><img className="logo" src={logo}></img>Travel Log</div></Link>
         <ul className="nav-menu">
-          <Link to="/NewPlan" style={{ textDecoration: "none"}}><li className="nav-item">Plan</li></Link>
-          <Link to="/WriteReview" style={{ textDecoration: "none"}}><li className="nav-item">Write Review</li></Link>
-          <Link to="/ReadReview" style={{ textDecoration: "none"}}><li className="nav-item">Read Review</li></Link>
-          <Link to="/MyPage" style={{ textDecoration: "none"}}><li className="nav-item">My Page</li></Link>
+
+
+          {isLoggedIn ? (
+              <Link to="/NewPlan" style={{ textDecoration: "none"}}><li className="nav-item">Plan</li></Link>
+          ) : (
+              <Link to="/account/login" style={{ textDecoration: "none"}}><li className="nav-item">Plan</li></Link>
+          )}
+
+          {isLoggedIn ? (
+              <Link to="/WriteReview" style={{ textDecoration: "none"}}><li className="nav-item">Write Review</li></Link>
+          ) : (
+              <Link to="/account/login" style={{ textDecoration: "none"}}><li className="nav-item">Write Review</li></Link>
+          )}
+
+          <Link to="/ReviewList" style={{ textDecoration: "none"}}><li className="nav-item">Read Review</li></Link>
+
+          {isLoggedIn ? (
+              <Link to="/MyPage" style={{ textDecoration: "none"}}><li className="nav-item">My Page</li></Link>
+          ) : (
+              <Link to="/account/login" style={{ textDecoration: "none"}}><li className="nav-item">My Page</li></Link>
+          )}
+
         </ul>
         {isLoggedIn ? (
             <div className="nav-btn" onClick={logoutHandler}>
