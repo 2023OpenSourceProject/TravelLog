@@ -4,11 +4,18 @@ import CreateMap from "./CreateMap";
 import TravelList from "./TravelList";
 import styles from "./NewPlan.module.css";
 import PlanNavbar from "./PlanNavbar";
+import logo from "../../assets/icon.svg";
 
 const NewPlan = () => {
+  const [planName, setPlanName] = useState("Test");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [modalOpen, setModalOpen] = useState(true);
+  const [modalStyle, setModalStyle] = useState("default");
+
   const customModalStyles = {
     overlay: {
-      backgroundColor: " rgba(0, 0, 0, 0.4)",
+      backgroundColor: " rgba(0, 0, 0, 0.6)",
       width: "100%",
       height: "100vh",
       zIndex: "10",
@@ -17,8 +24,8 @@ const NewPlan = () => {
       left: "0",
     },
     content: {
-      width: "360px",
-      height: "180px",
+      width: "1080px",
+      height: "540px",
       zIndex: "150",
       position: "absolute",
       top: "50%",
@@ -33,9 +40,23 @@ const NewPlan = () => {
     },
   };
 
-  const [modalOpen, setModalOpen] = useState(true);
-  const btnClickHandler = () =>{
+
+
+  const submitHandler = (event) =>{
+    event.preventDefault();
+    const planInfo = {
+      name: event.target[0].value,
+      start: event.target[1].value,
+      end: event.target[2].value,
+    };
+    console.log(planInfo.start);
+
+    setPlanName(planInfo.name);
+    setStartDate(planInfo.start);
+    setEndDate(planInfo.end);
+
     setModalOpen(false);
+    console.log(startDate);
   }
 
   return (
@@ -44,15 +65,41 @@ const NewPlan = () => {
       isOpen={modalOpen}
       onRequestClose={() => setModalOpen(false)}
       style={customModalStyles}
-      ariaHideApp={false}
-      contentLabel="Pop up Message"
       shouldCloseOnOverlayClick={false}
       >
-        <p>환영합니다</p>
-        <button onClick={btnClickHandler}>확인</button>
+        {modalStyle === "default" && 
+          <>
+            <img className={styles.logo} src={logo}></img>
+            <p className={styles.modalText1}>당신의 여행을 계획하세요</p>
+            <form onSubmit={submitHandler}> 
+              <div><input className={styles.modalPlanName} type="text"  required></input></div>
+              <p>여행 기간</p>
+              <div><input name="startDate" type="date"  required></input>
+              <input name="endDate" type="date"  required></input></div>
+    
+              <button type="submit">Continue</button>
+            </form>
+          </>
+        }
+        {modalStyle === "save" && 
+          <>
+            <img className={styles.logo} src={logo}></img>
+            <p className={styles.modalText1}>save</p>
+            <form onSubmit={submitHandler}> 
+              <div><input className={styles.modalPlanName} type="text"  required></input></div>
+              <p>여행 기간</p>
+              <div><input name="startDate" type="date"  required></input>
+              <input name="endDate" type="date"  required></input></div>
+    
+              <button type="submit">Continue</button>
+            </form>
+          </>
+        }
+        
+
       </Modal>
 
-      <PlanNavbar />
+      <PlanNavbar planName={planName} startDate={startDate} endDate={endDate} setModalOpen={setModalOpen} modalStyle={modalStyle} setModalStyle={setModalStyle}/>
       <div className={styles.body}>
         <div>
           <TravelList />

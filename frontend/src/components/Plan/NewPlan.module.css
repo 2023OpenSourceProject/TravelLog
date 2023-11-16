@@ -8,3 +8,22 @@
   grid-template-columns: 280px auto;
 }
 
+.logo{
+  width:100px;
+  height: auto;
+  display:inline;
+  align-items: center;
+}
+
+.modalText1{
+  color: #27AE60;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.modalPlanName{
+  display: inline;
+}
