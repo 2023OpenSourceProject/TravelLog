@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from 'react-router-dom';
 import Navbar from "./UI/Navbar";
 import mainImage from "../assets/image/mainPageImage.png";
@@ -8,6 +8,12 @@ const MainPage = () => {
   const travelPlanHandler = () =>{
 
   }
+
+  // 메인페이지 접속시 토큰을 로그로 출력
+  useEffect(() => {
+    console.log("token : " + localStorage.getItem('token'));
+  }, []);
+
 
   return (
     <>
