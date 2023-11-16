@@ -1,10 +1,26 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/icon.svg';
 import "./Navbar.css";
 
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const logoutHandler = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate('/');
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -15,9 +31,19 @@ const Navbar = () => {
           <Link to="/ReadReview" style={{ textDecoration: "none"}}><li className="nav-item">Read Review</li></Link>
           <Link to="/MyPage" style={{ textDecoration: "none"}}><li className="nav-item">My Page</li></Link>
         </ul>
-        <Link to="/account/login" style={{ textDecoration: "none"}}><div className="nav-btn">{<button className="navbar-button">Login</button>}</div></Link> 
-       
-        
+        {isLoggedIn ? (
+            <div className="nav-btn" onClick={logoutHandler}>
+              <button className="navbar-button">Logout</button>
+            </div>
+        ) : (
+            <Link to="/account/login" style={{ textDecoration: "none"}}>
+              <div className="nav-btn">
+                <button className="navbar-button">Login</button>
+              </div>
+            </Link>
+        )}
+
+
       </div>
     </nav>
   );
