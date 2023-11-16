@@ -1,11 +1,57 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/demo
+#    url: jdbc:mysql://localhost:3306/demo
+#    username: root
+#    password: 1234
+    url: jdbc:mysql://database-1.cn8lufquf92b.ap-northeast-2.rds.amazonaws.com:3306/demo?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: 1234
+    password: ssss1234
+
   jpa:
     hibernate:
-      #ddl-auto: create
-      ddl-auto: update
+      ddl-auto: create
+#      ddl-auto: update
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: travellog914@gmail.com
+    password: ogvjwntywmliljmf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+
+jwt:
+  token:
+    secret-key: secretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKey
+#    expiration-time: 1800000
+    expiration-hours: 3
+    issuer: shu914
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAYNGSAA3YWUPIXROG
+      secretKey: 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
+    s3:
+        bucket: travellogbusket
+    region:
+      static: ap-northeast-2
+    stack:
+        auto: false
+
+server:
+    port: 8081
+#    ssl:
+#      key-store: classpath:ssl/keystore.p12
+#      key-store-type: PKCS12
+#      key-store-password: ssss1234

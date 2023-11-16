@@ -1,6 +1,6 @@
 import React from "react";
 import accountImage from "../../assets/image/accountImage.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 import "./AccountForm.css";
 import axios from "axios";
 
@@ -82,7 +82,7 @@ const RegisterForm = () => {
         <Link to="/account/login">
           <p className="link">로그인</p>
         </Link>
-        <form onSubmit={submitHandler}>
+        <form  onSubmit={submitHandler}>
           <p>Email</p>
           <input
             type="email"

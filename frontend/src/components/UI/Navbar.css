@@ -11,19 +11,25 @@
 
 .navbar-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   height: 80px;
   max-width: 1500px;
   margin-left: 5vw;
   margin-right: 5vw;
 }
-
+.logo {
+  margin-top: 0;
+  margin-right: 10px;
+  width: auto;
+  height: 20px;
+}
 .navbar-logo {
   color: #4a5568;
-  justify-self: start;
+  justify-content: start;
   cursor: pointer;
   text-decoration: none;
+  font-family: 'Caveat', cursive;
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -45,6 +51,9 @@
   margin-right: 2rem;
 }
 
+/*  font-family: 'Caveat', cursive;  */
+/* font-family: 'Inter', sans-serif; */
+/* font-family: 'Poppins', sans-serif; */
 .nav-item {
   height: auto;
   color: #4a5568;
@@ -74,9 +83,7 @@
   display: none;
 }
 
-.menu-icon {
-  display: none;
-}
+
 
 .navbar-button {
   width: 120px;
