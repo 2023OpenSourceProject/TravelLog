@@ -1,13 +1,15 @@
 import React from "react";
 import image2 from "../../assets/image/accountImage.png";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 import "./AccountForm.css";
+import axios from 'axios';
 
 import { useState } from "react";
 
 const RegisterForm = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputUsername, setInputUsername] = useState("");
+  const [inputBirthday, setBirthday] = useState("");
   const [inputPwd, setInputPwd] = useState("");
   const [checkPwd, setCheckPwd] = useState("");
 
@@ -27,15 +29,44 @@ const RegisterForm = () => {
     setCheckPwd(event.target.value);
   }
 
+  function birthdayChangeHandler(event) {
+    setBirthday(event.target.value);
+  }
+
+
+  let navigate = useNavigate();
+  const params = new URLSearchParams();
+
   function submitHandler(event) {
+
     event.preventDefault();
+    if (inputPwd !== checkPwd) {
+      alert("비밀번호가 일치하지 않습니다!");
+      return;
+
+    }
     const registerData = {
       email: inputEmail,
-      username: inputUsername,
-      pwd: inputPwd,
+      name: inputUsername,
+      birthday: inputBirthday,
+      password: inputPwd,
       check: checkPwd,
     };
     console.log(registerData);
+    Object.keys(registerData).forEach(key => params.append(key, registerData[key]));
+    axios.post("https://api.travellog.site:8080/user", registerData,{
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': '*/*'
+      }
+    })
+        .then((response) => {
+          // 상태 코드가 200이 아닌 경우에도 성공 메시지를 표시하고 페이지를 이동시킵니다.
+          alert("회원가입에 성공했습니다.");
+          navigate("/");
+        }
+        );
+
   }
 
   return (
@@ -49,17 +80,19 @@ const RegisterForm = () => {
         <Link to="/account/login">
           <p className="link">로그인</p>
         </Link>
-        <form onSubmit={submitHandler}>
+        <form  onSubmit={submitHandler}>
           <p>Email</p>
-          <input type="text" placeholder="Enter your email address" required onChange={emailChangeHandler}></input>
+          <input type="email" name="email" placeholder="Enter your email address" required onChange={emailChangeHandler} />
           <p>Username</p>
-          <input type="text" placeholder="Enter your User name" required onChange={usernameChangeHandler}></input>
+          <input type="text" name="name" placeholder="Enter your User name" required onChange={usernameChangeHandler} />
+          <p>Birth Day</p>
+          <input type="date" name="birthday" required onChange={birthdayChangeHandler} />
           <p>Password</p>
-          <input type="text" placeholder="Enter your Password" required onChange={pwdChangeHandler}></input>
+          <input type="password" name="password" placeholder="Enter your Password" required onChange={pwdChangeHandler} />
           <p>Confirm Password</p>
-          <input type="text" placeholder="Confirm your Password" required onChange={pwdCheckHandler}></input>
+          <input type="password" placeholder="Confirm your Password" required onChange={pwdCheckHandler} />
           <br />
-          <button className="button">회원가입</button>
+          <input type="submit" className="button" value="회원가입" />
         </form>
       </div>
 
