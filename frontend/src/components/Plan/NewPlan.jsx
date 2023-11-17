@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from 'react-modal';
 import CreateMap from "./CreateMap";
 import TravelList from "./TravelList";
 import styles from "./NewPlan.module.css";
 import PlanNavbar from "./PlanNavbar";
 import logo from "../../assets/icon.svg";
+import { useNavigate } from "react-router-dom";
 
 const NewPlan = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [planName, setPlanName] = useState("Test");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [modalOpen, setModalOpen] = useState(true);
   const [modalStyle, setModalStyle] = useState("default");
+  const navigate = useNavigate();
 
   const customModalStyles = {
     overlay: {
@@ -39,6 +42,17 @@ const NewPlan = () => {
       textAlign: "center",
     },
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log("token : " + token);
+    if(token) {
+      setIsLoggedIn(true);
+    }
+    if(isLoggedIn === false){
+      navigate('/Login');
+    }
+  }, []);
 
 
 

@@ -12,6 +12,7 @@
 .navbar-container {
   display: grid;
   grid-template-columns: auto 1fr auto;
+  justify-content: center;
   align-items: center;
   height: 80px;
   max-width: 1500px;

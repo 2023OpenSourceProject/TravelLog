@@ -58,7 +58,7 @@ const LoginForm = () => {
         </Link>
         <h1 className="head">로그인</h1>
         <p>아직 회원이 아니신가요?</p>
-        <Link to="/account/register">
+        <Link to="/Register">
           <p className="link">회원가입</p>
         </Link>
         <form onSubmit={submitHandler}>
@@ -80,7 +80,7 @@ const LoginForm = () => {
 
           <button className="button">로그인</button>
         </form>
-        <Link to="/account/findpwd">
+        <Link to="/Findpwd">
           <p className="link">비밀번호를 잊으셨나요?</p>
         </Link>
 
