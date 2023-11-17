@@ -44,7 +44,7 @@ const MainPage = () => {
           {isLoggedIn ? (
               <Link to="/NewPlan" style={{ textDecoration: "none"}}><button className={styles.startButton}>지금 바로 계획하기!</button></Link>
           ) : (
-              <Link to="/account/login" style={{ textDecoration: "none"}}><button className={styles.startButton}>지금 바로 가입하기!</button></Link>
+              <Link to="/Login" style={{ textDecoration: "none"}}><button className={styles.startButton}>지금 바로 가입하기!</button></Link>
           )}
 
         </div>

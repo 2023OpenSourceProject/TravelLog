@@ -81,7 +81,7 @@ const RegisterForm = () => {
         </Link>
         <h1 className="head">회원가입</h1>
         <p>이미 계정이 있으신가요?</p>
-        <Link to="/account/login">
+        <Link to="/Login">
           <p className="link">로그인</p>
         </Link>
         <form  onSubmit={submitHandler}>

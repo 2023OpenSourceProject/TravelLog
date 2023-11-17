@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 const NewReview = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [planList, setPlanList] = useState([]);
     const [selectedPlan, setSelectedPlan] = useState(null);
@@ -14,6 +15,19 @@ const NewReview = () => {
     const [isPublic, setIsPublic] = useState(null);
     const [editorData, setEditorData] = useState("");
     const [selectedImageUrl, setSelectedImageUrl] = useState(null);
+
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        console.log("token : " + token);
+        if(token) {
+          setIsLoggedIn(true);
+        }
+        if(isLoggedIn === false){
+          navigate('/Login');
+        }
+      }, []);
 
     const onImageChange = (event) => {
         if(event.target.files && event.target.files[0]) {
@@ -40,7 +54,7 @@ const NewReview = () => {
     }
 
 
-    let navigate = useNavigate();
+
 
 
     useEffect(() => {

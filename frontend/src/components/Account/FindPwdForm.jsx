@@ -62,7 +62,7 @@ const FindPwdForm = () => {
         </Link>
         <h1 className="head">비밀번호 찾기</h1>
         <p>계정이 없으신가요?</p>
-        <Link to="/account/register">
+        <Link to="/Register">
           <p className="link">회원가입</p>
         </Link>
         <form onSubmit={submitHandler}>
