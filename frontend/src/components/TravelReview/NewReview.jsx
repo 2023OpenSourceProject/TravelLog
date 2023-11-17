@@ -100,7 +100,7 @@ const NewReview = () => {
         for (var pair of formData.entries()) {
             console.log(pair[0]+ ', ' + pair[1]);
         }
-        // const response = await axios.post('http://localhost:8080/review', formData, {
+        
         const response = await axios.post('https://api.travellog.site:8080/review', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
