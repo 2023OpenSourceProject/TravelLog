@@ -1,4 +1,5 @@
 import React from "react";
+
 import {Link} from 'react-router-dom';
 import styles from "./PlanNavbar.module.css";
 import icon from '../../assets/icon.svg';
@@ -6,14 +7,20 @@ import editIcon from '../../assets/editIcon.png';
 
 const PlanNavbar = (props) => {
 
+  
   const editClickHandler = () =>{
-    props.setModalOpen(false);
+    props.setModalOpen(true);
+    props.setModalStyle("Edit");
   }
 
   const savePlanHandler = (event) => {
     event.preventDefault();
-    props.setModalStyle("save");
+    props.setModalOpen(true);
+    props.setModalStyle("Save");
     console.log("Save");
+  }
+  const listClickHandler = (day) => {
+    props.setSelectedDay(day)
   }
 
   return (
@@ -26,16 +33,18 @@ const PlanNavbar = (props) => {
             <div className={styles.date}>{props.startDate} ~ {props.endDate}</div>
           </div>
           <div ><img className={styles.editIcon} onClick={editClickHandler} src={editIcon} ></img></div>
-
-          
         </div>
+
         <ul className={styles.days}>
-          <li className={styles.day}>Day1</li>
-          <li className={styles.day}>Day2</li>
-          <li className={styles.day}>Day3</li>
-           </ul>
+          {Array.from({ length: props.dateDiff}, (_, i) => i + 1).map((day) => (
+            <li key={day} className={styles.day} onClick={() => listClickHandler(day)}>
+              {day === props.selectedDay ? <div className={styles.selectedDay}>Day {day}</div> : <div>{`Day ${day}`}</div>}
+            </li>
+          ))}
+        </ul>
+
         <div className={styles.btns}>
-          <button  className={styles.cancleBtn}>취소</button>
+          <Link to="/"><button  className={styles.cancleBtn}>취소</button></Link>
           <form onSubmit={savePlanHandler}>
             <button type="submit" className={styles.saveBtn}>저장</button>
           </form>
