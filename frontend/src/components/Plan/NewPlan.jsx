@@ -49,7 +49,7 @@ const NewPlan = () => {
     if(token) {
       setIsLoggedIn(true);
     }
-    if(isLoggedIn === false){
+    else{
       navigate('/Login');
     }
   }, []);

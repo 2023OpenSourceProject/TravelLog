@@ -5,8 +5,8 @@ import mainImage from "../assets/image/mainPageImage.png";
 import styles from "./MainPage.module.css";
 
 const MainPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // 메인페이지 접속시 토큰을 로그로 출력
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,7 +19,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar setIsLoggedIn={setIsLoggedIn}/>
       <div className={styles.container}>
         <img src={mainImage} />  
 
