@@ -18,6 +18,7 @@ const Navbar = (props) => {
   const logoutHandler = () => {
     localStorage.clear();
     props.setIsLoggedIn(false);
+    setIsLoggedIn(false);
 
   };
 

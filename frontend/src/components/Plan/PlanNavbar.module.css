@@ -17,7 +17,6 @@
 }
 
 .icon{
- 
   margin: 0;
   margin-left: 10px;
   margin-right: 10px;
@@ -25,6 +24,7 @@
   width:32px;
   height:32px;
 }
+
 .editIcon{
   margin: 0;
   margin-left: 10px;
@@ -36,8 +36,13 @@
 
 .planName{
   display: flex;
-  font-size: 32px;
+  font-size: 1.5rem;
+  overflow: auto;
 }
+.planName::-webkit-scrollbar {
+  display: none;
+}
+
 .date{
   color: #999;
   font-family: 'Poppins', sans-serif;
@@ -63,6 +68,9 @@
   font-family: "Inter", sans-serif;
   font-size: 20px;
   font-weight: bold;
+}
+.selectedDay{
+  color: red;
 }
 
 .btns{
