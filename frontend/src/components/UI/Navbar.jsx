@@ -4,7 +4,7 @@ import logo from '../../assets/icon.svg';
 import "./Navbar.css";
 
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -17,8 +17,8 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     localStorage.clear();
-    setIsLoggedIn(false);
-    navigate('/');
+    props.setIsLoggedIn(false);
+
   };
 
   return (
@@ -52,7 +52,7 @@ const Navbar = () => {
         {isLoggedIn ? (
             <Link to="/" style={{textDecorationLine: "none"}}>
               <div className="nav-btn" onClick={logoutHandler}>
-                <button className="navbar-button">Logout</button>
+                <button  className="navbar-button">Logout</button>
               </div>
             </Link>
 

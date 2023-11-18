@@ -24,9 +24,9 @@ const NewReview = () => {
         if(token) {
           setIsLoggedIn(true);
         }
-        if(isLoggedIn === false){
-          navigate('/Login');
-        }
+        else{
+            navigate('/Login');
+          }
       }, []);
 
     const onImageChange = (event) => {
