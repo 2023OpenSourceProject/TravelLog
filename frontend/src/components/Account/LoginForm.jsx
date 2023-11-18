@@ -7,7 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const LoginForm = () => {
-  const [inputEmali, setInputEmail] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
   const [inputPwd, setInputPwd] = useState("");
   const navigate = useNavigate();
   const params = new URLSearchParams();
@@ -23,11 +23,12 @@ const LoginForm = () => {
   function submitHandler(event) {
     event.preventDefault();
     const loginData = {
-      email: inputEmali,
+      email: inputEmail,
       password: inputPwd,
     };
     console.log(loginData);
     Object.keys(loginData).forEach(key => params.append(key, loginData[key]));
+    console.log(loginData)
     axios.post("https://api.travellog.site:8080/login", loginData,{
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
