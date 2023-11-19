@@ -5,5 +5,5 @@
 
 .body {
   display: grid;
-  grid-template-columns: 280px 280px auto;
+  grid-template-columns: 15vw 15vw auto;
 }

@@ -1,102 +1,87 @@
-img {
-  height: 665px;
-  flex-shrink: 0;
-  margin-top: 2vw;
-  display: flex;
-}
+
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   margin-left: 5vw;
   margin-right: 5vw;
 }
 
-.mainBody {
-  text-align: center;
-  display: flex;
-  width: 506px;
-  height: 431px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 75px;
-  flex-shrink: 0;
+.mainImage {
+  margin-top: 7vh;
+  height: 75vh;
+}
+
+.mainBody{
+  margin-left: 14vw;
 }
 .body1 {
   text-align: left;
   color: var(--gray-gray-900, #1a202c);
-  font-family: Inter;
-  font-size: 64px;
+  font-family: "Inter", sans-serif;
+  font-size: 4vw;
   font-style: normal;
-  font-weight: 300;
-  line-height: 71px; /* 110.938% */
+  font-weight: 400;
+  margin-bottom: 4vw;
 }
+
+.body2 {
+  color: var(--gray-gray-700, #4a5568);
+  /* Paragraphs/default-lg */
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1vw;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 2.5vw; /* 200% */
+  margin-bottom: 6vh;
+}
+
 .Plan {
   background: linear-gradient(180deg, #de4396 0%, rgba(13, 28, 159, 0) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Inter;
-  font-size: 64px;
+  font-family: "Inter", sans-serif;
+  font-size: auto;
   font-style: normal;
   font-weight: 700;
-  line-height: 71px;
 }
-.MadeBy {
-  color: var(--gray-gray-900, #1a202c);
 
-  /* Display/Display/Dilplay-h1-bold */
-  font-family: Inter;
-  font-size: 53px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 71px;
-}
 .Review {
   background: linear-gradient(225deg, #f7666f 0%, #406aff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: Inter;
-  font-size: 64px;
+  font-family: "Inter", sans-serif;
+  font-size: auto;
   font-style: normal;
   font-weight: 800;
-  line-height: 71px;
+
 }
 
-.body2 {
-  color: var(--gray-gray-700, #4a5568);
 
-  /* Paragraphs/default-lg */
-  text-align: left;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 36px; /* 200% */
-}
 
 .startButton {
-  display: flex;
-  width: 438px;
-  height: 98px;
-  padding: 19px 30px;
+
+  width: 31vw;
+  height: 8vh;
+
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
 
-  border-radius: 5px;
+
+  border-radius: 0.5vw;
   background: #3d63ea;
 
   /* Btn-Shadow */
-  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+
 
   color: var(--gray-gray-50, #fafafa);
-  font-family: Inter;
-  font-size: 40px;
+  font-family: "Inter", sans-serif;
+  font-size: 2vw;
   font-style: normal;
   font-weight: 700;
-  line-height: 14px; /* 35% */
+
 }

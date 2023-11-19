@@ -39,7 +39,7 @@ const ModalComponent = ({
     },
     content: {
       width: "1080px",
-      height: "540px",
+      height: "660px",
       zIndex: "150",
       position: "absolute",
       top: "50%",
@@ -125,12 +125,12 @@ const ModalComponent = ({
           <img className={styles.logo} src={logo}></img>
           <p className={styles.modalText1}>당신의 여행을 계획하세요</p>
           <form onSubmit={submitHandler}>
-            <div>
+            <div className={styles.inputName}>
               <input
                 className={styles.modalPlanName}
                 type="text"
                 required
-              ></input>
+              /><label className={styles.nameLabel}>Name</label><span className={styles.nameSpan}></span>
             </div>
             <p>여행 기간</p>
             <div>
@@ -145,7 +145,7 @@ const ModalComponent = ({
               />
             </div>
 
-            <button type="submit">Continue</button>
+            <button type="submit" className={styles.btn}>Continue</button>
           </form>
         </>
       </Modal>
