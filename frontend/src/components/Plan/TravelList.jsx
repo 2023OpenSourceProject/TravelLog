@@ -3,6 +3,8 @@ import icon2 from '../../assets/icon2.png';
 import deleteIcon from '../../assets/deleteIcon.svg'
 
 const TravelList = () => {
+
+
   return (
     <>
       <ul className={styles.travelList}>

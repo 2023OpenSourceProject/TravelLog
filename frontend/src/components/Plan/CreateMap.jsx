@@ -15,7 +15,7 @@ const CreateMap = () => {
         }}
         style={{
           width: "100%",
-          height: "700px",
+          height: "743px",
         }}
         level={3} // 지도의 확대 레벨
       >
