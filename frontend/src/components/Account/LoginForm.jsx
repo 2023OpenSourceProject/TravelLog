@@ -1,10 +1,11 @@
 import React from "react";
 import image2 from "../../assets/image/accountImage.png";
+import logo from "../../assets/icon.svg";
 import { Link, useNavigate } from "react-router-dom";
-import "./AccountForm.css";
+import styles from "./AccountForm.module.css";
+import axios from "axios";
 
 import { useState } from "react";
-import axios from "axios";
 
 const LoginForm = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -27,67 +28,87 @@ const LoginForm = () => {
       password: inputPwd,
     };
     console.log(loginData);
-    Object.keys(loginData).forEach(key => params.append(key, loginData[key]));
-    console.log(loginData)
-    axios.post("https://api.travellog.site:8080/login", loginData,{
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': '*/*'
-      }
-    })
-        .then((response) => {
-          if(response.status === 200){
-            localStorage.setItem('token', response.data);
-            alert("로그인에 성공했습니다.");
-            navigate('/');
-          } else {
-            console.log(response);
-          }
-        })
-        .catch((error) => {
-          alert("로그인에 실패했습니다.");
-        });
+    Object.keys(loginData).forEach((key) => params.append(key, loginData[key]));
+    console.log(loginData);
+    axios
+      .post("https://api.travellog.site:8080/login", loginData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "*/*",
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          localStorage.setItem("token", response.data);
+          alert("로그인에 성공했습니다.");
+          navigate("/");
+        } else {
+          console.log(response);
+        }
+      })
+      .catch((error) => {
+        alert("로그인에 실패했습니다.");
+      });
   }
 
-
-
   return (
-    <div className="flex">
-      <div className="blank">
-        <Link to="/">
-          <button>Travel log</button>
-        </Link>
-        <h1 className="head">로그인</h1>
-        <p>아직 회원이 아니신가요?</p>
-        <Link to="/Register">
-          <p className="link">회원가입</p>
-        </Link>
-        <form onSubmit={submitHandler}>
-          <p>Email</p>
-          <input
-              type="email" name="email"
-            placeholder="Enter your email address"
-            required
-            onChange={emailChangeHandler}
-          ></input>
-          <p>Password</p>
-          <input
-              type="password" name="password"
-            placeholder="Enter your Password"
-            required
-            onChange={pwdChangeHandler}
-          ></input>
-          <br />
+    <div className={styles.body}>
+      <div className={styles.container}>
+        <div className={styles.form}>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <div className={styles.logo}>
+              <img className={styles.icon} src={logo}></img>Travel Log
+            </div>
+          </Link>
+          <div className={styles.loginform}>
+            <h1 className={`${styles.head} ${styles.miniform}`}>로그인</h1>
 
-          <button className="button">로그인</button>
-        </form>
-        <Link to="/Findpwd">
-          <p className="link">비밀번호를 잊으셨나요?</p>
-        </Link>
+            <div className={styles.miniform}>
+              <p>아직 회원이 아니신가요?</p>
+              <Link to="/Register">
+                <p className="link">회원가입</p>
+              </Link>
+            </div>
 
+            <form onSubmit={submitHandler}>
+              <div className={styles.miniform}>
+                <p className={styles.index}>Email</p>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email address"
+                  required
+                  onChange={emailChangeHandler}
+                ></input>
+              </div>
+
+              <div className={styles.miniform}>
+                <p className={styles.index}>Password</p>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter your Password"
+                  required
+                  onChange={pwdChangeHandler}
+                ></input>
+              </div>
+
+              <input
+                type="submit"
+                className={`${styles.button} ${styles.miniform}`}
+                value="로그인"
+              />
+            </form>
+            <Link to="/Findpwd">
+              <p className={styles.link} style={{ textAlign: "right" }}>
+                비밀번호를 잊으셨나요?
+              </p>
+            </Link>
+          </div>
+        </div>
+
+        <img src={image2} />
       </div>
-
-      <img className="blank" src={image2} />
     </div>
   );
 };
