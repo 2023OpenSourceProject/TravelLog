@@ -27,7 +27,7 @@ const ReviewList = () => {
         <div className={styles.container}>
           {[...reviewlist].reverse().map((review) => (
             <Link
-              to={`/ReadReview`}
+              to={`/ReadReview/${review.reviewId}`}
               state={{ reviewId: review.reviewId }}
               key={review.reviewId}
               style={{ textDecoration: "none" }}
