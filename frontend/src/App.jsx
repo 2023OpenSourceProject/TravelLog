@@ -26,7 +26,7 @@ function App() {
         <Route path="/Register" element={<RegisterForm />}></Route>
         <Route path="/WriteReview" element={<NewReview />}></Route>
         <Route path="/ReviewList" element={<ReviewList />}></Route>
-        <Route path="/ReadReview" element={<ReadReview />}></Route>
+        <Route path="/ReadReview/*" element={<ReadReview />}></Route>
         <Route path="/MyPage/*" element={<Mypage />}></Route>
 
         <Route path="*" element={<NotFound/>}></Route>
