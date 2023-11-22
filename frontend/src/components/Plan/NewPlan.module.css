@@ -5,5 +5,29 @@
 
 .body {
   display: grid;
-  grid-template-columns: 15vw 15vw auto;
+  grid-template-columns: 250px auto;
+}
+
+.mapSection{
+  display: grid;
+
+}
+.searchSection {
+  width: 450px;
+  max-height: 740px;
+  overflow-y: scroll;
+}
+.inputForm {
+  display: flex;
+}
+.searchList {
+  display: flex;
+  margin-bottom: 10px;
+  background-color: rgb(249, 249, 235);
+  border: gray solid;
+  border-radius: 3px 3px 3px 3px;
+
+}
+.locationInfo{
+  width: 330px; 
 }

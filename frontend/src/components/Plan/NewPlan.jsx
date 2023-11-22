@@ -4,11 +4,10 @@ import CreateMap from "./CreateMap";
 import TravelList from "./TravelList";
 import styles from "./NewPlan.module.css";
 import PlanNavbar from "./PlanNavbar";
-import SearchLocation from "./SearchLocation";
 import { useNavigate } from "react-router-dom";
 
 const NewPlan = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(new Date());
   const [planName, setPlanName] = useState("Plan Name");
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -16,29 +15,28 @@ const NewPlan = () => {
   const [selectedDay, setSelectedDay] = useState(1);
   const [modalOpen, setModalOpen] = useState(true);
   const [modalStyle, setModalStyle] = useState("Edit");
-
+  
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     console.log("token : " + token);
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
+    if (!token) {
       navigate("/Login");
-    }
-    (()=>{
+    } 
+
+    (() => {
       window.addEventListener("beforeunload", preventClose);
     })();
     return () => {
       window.removeEventListener("beforeunload", preventClose);
     };
-
   }, []);
+
   const preventClose = (e) => {
     e.preventDefault();
-    e.returnValue="";
-  }
+    e.returnValue = "";
+  };
 
   return (
     <div className={styles.main}>
@@ -50,6 +48,7 @@ const NewPlan = () => {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
         setDateDiff={setDateDiff}
+   
       />
       <PlanNavbar
         planName={planName}
@@ -61,15 +60,11 @@ const NewPlan = () => {
         dateDiff={dateDiff}
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
+
       />
       <div className={styles.body}>
         <div>
-          <TravelList  
-            selectedDay={selectedDay}
-          />
-        </div>
-        <div>
-          <SearchLocation />
+          <TravelList selectedDay={selectedDay} />
         </div>
         <div>
           <CreateMap />
