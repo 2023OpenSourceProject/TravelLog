@@ -17,6 +17,7 @@ const ModalComponent = ({
   setStartDate,
   setEndDate,
   setDateDiff,
+
 }) => {
 
   const [state, setState] = useState([
@@ -108,8 +109,9 @@ const ModalComponent = ({
     setModalOpen(false);
     console.log(diff);
   };
-  const saveHandler = () =>{
-    
+
+  const saveHandler = (event) =>{
+    event.preventDefault();
   }
   
 
