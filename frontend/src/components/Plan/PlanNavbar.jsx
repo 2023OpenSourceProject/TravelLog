@@ -10,13 +10,11 @@ const PlanNavbar = (props) => {
   
   const editClickHandler = () =>{
     props.setModalOpen(true);
-    props.setModalStyle("Edit");
   }
 
   const savePlanHandler = (event) => {
     event.preventDefault();
-    props.setModalOpen(true);
-    props.setModalStyle("Save");
+    alert("저장하시겠습니까?")
     console.log("Save");
   }
   const listClickHandler = (day) => {
