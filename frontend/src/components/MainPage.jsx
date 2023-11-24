@@ -26,12 +26,12 @@ const MainPage = () => {
         </div>
         <div className={styles.mainBody}>
           <div className={styles.body1}>
-            <div>
+            <div className={styles.typewriter1}>
               <span>Great </span>
               <span className={styles.Plan}>Plan </span>
               <span>is</span>
             </div>
-            <div>
+            <div className={styles.typewriter2}>
               <span>made by </span>
               <span className={styles.Review}>Review</span>
             </div>
