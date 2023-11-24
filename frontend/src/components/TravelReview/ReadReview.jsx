@@ -42,7 +42,7 @@ const ReadReview = () => {
             <p>{review.userName}</p>
           </div>
           <img className={styles.image} src={`${review.imgUrl}`} />
-          <p className={styles.content}>{review.content}</p>
+           <p className={styles.content} dangerouslySetInnerHTML={{ __html: review.content }}></p>
         </div>
       </div>
     </>
