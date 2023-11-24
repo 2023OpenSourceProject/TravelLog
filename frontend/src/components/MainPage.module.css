@@ -8,14 +8,73 @@
   margin-right: 5vw;
 }
 
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .mainImage {
   margin-top: 7vh;
   height: 75vh;
+  animation: 1s ease-out 0s 1 slideInFromRight; /* duration: 2s, timing-function: ease-out, delay: 0s, iteration-count: 1, animation-name: slideInFromRight */
+
 }
 
 .mainBody{
   margin-left: 14vw;
 }
+
+.typewriter1, .typewriter2 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards; /* Keep the final state after animation */
+  opacity: 0; /* Initially hide the text */
+}
+
+.typewriter1 {
+  border-right: .15em solid #000000; /* The typewriter cursor */
+  animation-name: typing, blink-caret, fadeIn;
+  animation-delay: 1s, 1s, 1s; /* Start all animations after 1s */
+}
+
+.typewriter2 {
+  border-right: .15em solid #000000; /* The typewriter cursor */
+  animation-name: typing, blink-caret, fadeIn;
+  animation-delay: 1.7s, 2.4s, 1.7s; /* Start fadeIn and typing after 1.7s, and blink-caret starts after typing ends */
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #000000;
+  }
+}
+
+/* The fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
 .body1 {
   text-align: left;
   color: var(--gray-gray-900, #1a202c);
@@ -24,6 +83,7 @@
   font-style: normal;
   font-weight: 400;
   margin-bottom: 4vw;
+  animation: 1s ease-in 1s 1 fadeIn;
 }
 
 .body2 {
@@ -36,6 +96,8 @@
   font-weight: bold;
   line-height: 2.5vw; /* 200% */
   margin-bottom: 6vh;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out 2.5s forwards;
 }
 
 .Plan {
@@ -83,5 +145,6 @@
   font-size: 2vw;
   font-style: normal;
   font-weight: 700;
-
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out 2.5s forwards;
 }
