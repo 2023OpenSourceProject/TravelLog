@@ -94,7 +94,7 @@ const RegisterForm = () => {
             <form onSubmit={submitHandler}>
               <div className={styles.miniform}>
                 <p className={styles.index}>Email</p>
-                <input
+                <input className={styles.input}
                   type="email"
                   name="email"
                   placeholder="Enter your email address"
@@ -105,7 +105,7 @@ const RegisterForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Username</p>
-                <input
+                <input className={styles.input}
                   type="text"
                   name="name"
                   placeholder="Enter your User name"
@@ -116,7 +116,7 @@ const RegisterForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Birth Day</p>
-                <input
+                <input className={styles.input}
                   type="date"
                   name="birthday"
                   required
@@ -126,7 +126,7 @@ const RegisterForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Password</p>
-                <input
+                <input className={styles.input}
                   type="password"
                   name="password"
                   placeholder="Enter your Password"
@@ -137,7 +137,7 @@ const RegisterForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Confirm Password</p>
-                <input
+                <input className={styles.input}
                   type="password"
                   placeholder="Confirm your Password"
                   required
@@ -154,7 +154,7 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <img src={image2} />
+        <img className={styles.image} src={image2} />
       </div>
     </div>
   );

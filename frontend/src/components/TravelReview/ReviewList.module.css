@@ -1,32 +1,27 @@
 .body {
-  margin: 3vw;
+  margin: 5vh 5vw;
 }
 
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 4vw;
-  margin-bottom: 5vh;
-}
-
-.item {
-  width: 550px;
+  gap: 5vw;
 }
 
 .review {
-  width: 500px;
-  height: 650px;
+  width: 400px;
+  height: 300px;
 }
 
 .image {
-  width: 500px;
-  height: 650px;
+  width: 400px;
+  height: 300px;
 }
 
 .review_title {
   word-wrap: break-word;
   color: #000;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins";
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -39,7 +34,7 @@
 
   color: #3d3e48;
   /* Paragraph */
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -47,9 +42,9 @@
 }
 
 .title {
-  margin-bottom: 5vh;
+  margin-bottom: 1vh;
   color: #3d3e48;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins";
   font-size: 48px;
   font-style: normal;
   font-weight: 800;
