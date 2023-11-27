@@ -78,7 +78,7 @@ const FindPwdForm = () => {
             <form onSubmit={submitHandler}>
               <div className={styles.miniform}>
                 <p className={styles.index}>Username</p>
-                <input
+                <input className={styles.input}
                   type="text"
                   name="name"
                   placeholder="Enter your User name"
@@ -89,7 +89,7 @@ const FindPwdForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Email</p>
-                <input
+                <input className={styles.input}
                   type="email"
                   name="email"
                   placeholder="Enter your email address"
@@ -100,7 +100,7 @@ const FindPwdForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Birth Day</p>
-                <input
+                <input className={styles.input}
                   type="date"
                   name="birthday"
                   required
@@ -116,7 +116,7 @@ const FindPwdForm = () => {
             </form>
           </div>
         </div>
-        <img src={image2} />
+        <img className={styles.image} src={image2} />
       </div>
     </div>
   );

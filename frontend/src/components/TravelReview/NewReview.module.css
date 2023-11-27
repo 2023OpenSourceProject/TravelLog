@@ -1,0 +1,91 @@
+.body {
+  margin: 5vh 5vw;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  grid-gap: 50px;
+}
+
+.title {
+  color: #3d3e48;
+  font-family: "Poppins";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%; /* 57.6px */
+}
+
+.input_title {
+  width: 1000px;
+  height: 70px;
+  font-family: "Poppins";
+  font-size: 35px;
+  font-weight: bold;
+  border: 0px;
+  border-top: 5px solid #bababa;
+}
+
+.index {
+  color: #000;
+  font-family: "Mochiy Pop P One";
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 10px;
+}
+
+.button_post {
+  display: flex;
+  width: 271px;
+  height: 91px;
+  padding: 5px 15px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #43b97f;
+  color: #fff;
+  border: 0;
+
+  text-align: center;
+  font-family: "Poppins";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 57.6px */
+}
+
+.input_file {
+  display: none;
+}
+
+.select {
+  display: flex;
+  width: 139px;
+  height: 51px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #8f90a6;
+
+  color: #fff;
+  text-align: center;
+  font-family: "Mochiy Pop P One";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.input {
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

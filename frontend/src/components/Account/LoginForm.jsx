@@ -73,7 +73,7 @@ const LoginForm = () => {
             <form onSubmit={submitHandler}>
               <div className={styles.miniform}>
                 <p className={styles.index}>Email</p>
-                <input
+                <input className={styles.input}
                   type="email"
                   name="email"
                   placeholder="Enter your email address"
@@ -84,7 +84,7 @@ const LoginForm = () => {
 
               <div className={styles.miniform}>
                 <p className={styles.index}>Password</p>
-                <input
+                <input className={styles.input}
                   type="password"
                   name="password"
                   placeholder="Enter your Password"
@@ -107,7 +107,7 @@ const LoginForm = () => {
           </div>
         </div>
 
-        <img src={image2} />
+        <img className={styles.image} src={image2} />
       </div>
     </div>
   );
