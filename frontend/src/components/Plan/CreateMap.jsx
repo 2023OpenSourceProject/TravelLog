@@ -174,18 +174,20 @@ const CreateMap = ({selectedDay, setLocationList, setNewPlan, locationList}) => 
       const newLocationList = [...prevState];
       const newPlace = {
         day: day,
-        lat: place.y,
-        lng: place.x,
+        lat: parseFloat(place.y),
+        lng: parseFloat(place.x),
+        img: "#",
         seq: newLocationList.filter(item => item.day === day).length + 1,
         location: place.address_name,
         name: place.place_name,
       };
       newLocationList.push(newPlace);
+
       return newLocationList;
 
     });
     setNewPlan(prevState => {
-      return {...prevState, plan_detail: locationList};
+      return {...prevState, plan_details: locationList};
     })
   }
 
