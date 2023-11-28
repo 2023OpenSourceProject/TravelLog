@@ -1,5 +1,5 @@
 import styles from "./TravelList.module.css";
-import icon2 from "../../assets/icon2.png";
+import icon2 from "../../assets/arrowIcon.svg";
 import deleteIcon from "../../assets/deleteIcon.svg";
 
 const TravelList = ({ selectedDay, locationList, setLocationList }) => {
@@ -23,6 +23,26 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
     });
   };
 
+  const moveDownHandler = (indexToMove) => {
+    setLocationList((prevState) => {
+      const selectedDayPlaces = prevState.filter((item) => item.day === selectedDay);
+
+      if(indexToMove < selectedDayPlaces.length - 1) {
+        const temp = selectedDayPlaces[indexToMove];
+        selectedDayPlaces[indexToMove] = selectedDayPlaces[indexToMove + 1];
+        selectedDayPlaces[indexToMove + 1] = temp;
+      }
+
+      selectedDayPlaces.forEach((item, index) => {
+        item.seq = index + 1;
+      });
+
+      const otherDayPlaces = prevState.filter((item) => item.day !== selectedDay);
+
+      return [...otherDayPlaces, ...selectedDayPlaces];
+    });
+  };
+
   return (
     <>
       <ul className={styles.travelList}>
@@ -30,7 +50,7 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
           .filter((item) => item.day === selectedDay)
           .map((item, index) => (
             <li className={styles.travelPlace} key={index}>
-              <img className={styles.listIcon} src={icon2}></img>
+              <img className={styles.listIcon} src={icon2} onClick={() => moveDownHandler(index)}></img>
               <h5>{item.name}</h5>
               <img
                 className={styles.deleteIcon}

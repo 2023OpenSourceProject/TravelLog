@@ -1,22 +1,50 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom';
 import styles from "./PlanNavbar.module.css";
 import icon from '../../assets/icon.svg';
 import editIcon from '../../assets/editIcon.png';
+import axios from "axios";
 
 const PlanNavbar = (props) => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  console.log("token : " + token);
 
-  
   const editClickHandler = () =>{
     props.setModalOpen(true);
   }
 
   const savePlanHandler = (event) => {
+    console.log(!props.newPlan.plan_detail);
     event.preventDefault();
-    alert("저장하시겠습니까?")
-    console.log("Save");
+    if(confirm("저장하시겠습니까?")) {
+      if(!props.newPlan.plan_detail === true) {
+        alert("추가된 일정이 없습니다.");
+      } else {
+        axios.post('https://api.travellog.site:8080/plan', props.newPlan, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          }
+        })
+        .then((response) => {
+          alert("일정 생성 성공")
+          console.log(response);
+          navigate("/");
+          
+        })
+        .catch((error) => {
+          alert("일정 생성 실패")
+          console.error(error);
+        });
+      }
+    } else {
+      console.log("일정 저장 취소");
+    }
+
   }
+  
   const listClickHandler = (day) => {
     props.setSelectedDay(day)
   }

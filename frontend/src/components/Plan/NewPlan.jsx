@@ -16,11 +16,10 @@ const NewPlan = () => {
   const [modalOpen, setModalOpen] = useState(true);
 
   const [newPlan, setNewPlan] = useState({
-    id: 1,
     title: planName,
     start_date: startDate,
     end_date: endDate,
-    plan_detail: [],
+    plan_details: [],
   });
 
   const navigate = useNavigate();
@@ -42,7 +41,7 @@ const NewPlan = () => {
 
   useEffect(() => {
     setNewPlan(prevState => {
-      return {...prevState, plan_detail: locationList};
+      return {...prevState, plan_details: locationList};
     });
   }, [locationList]);
 
@@ -66,6 +65,8 @@ const NewPlan = () => {
         setEndDate={setEndDate}
         setDateDiff={setDateDiff}
         setNewPlan={setNewPlan}
+        setSelectedDay={setSelectedDay}
+        setLocationList={setLocationList}
       />
       <PlanNavbar
         planName={planName}
@@ -75,6 +76,7 @@ const NewPlan = () => {
         selectedDay={selectedDay}
         setModalOpen={setModalOpen}
         setSelectedDay={setSelectedDay}
+        newPlan={newPlan}
       />
       <div className={styles.body}>
         <div>
