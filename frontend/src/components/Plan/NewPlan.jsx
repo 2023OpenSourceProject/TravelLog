@@ -67,6 +67,7 @@ const NewPlan = () => {
         setNewPlan={setNewPlan}
         setSelectedDay={setSelectedDay}
         setLocationList={setLocationList}
+        dateDiff={dateDiff}
       />
       <PlanNavbar
         planName={planName}

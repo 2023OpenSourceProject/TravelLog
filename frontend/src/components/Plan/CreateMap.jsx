@@ -2,29 +2,38 @@ import React, { useState, useEffect } from "react";
 import styles from "./NewPlan.module.css";
 import { Map, MapTypeControl, ZoomControl } from "react-kakao-maps-sdk";
 import useKakaoLoader from "./useKakaoLoader";
+import searchIcon from "../../assets/searchIcon.png";
 
-const CreateMap = ({selectedDay, setLocationList, setNewPlan, locationList}) => {
+
+const CreateMap = ({
+  selectedDay,
+  setLocationList,
+  setNewPlan,
+  locationList,
+}) => {
   let lat, lng;
   let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+  let markerSource = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
+
   // map은 지도 객체를 저장, places는 검색 결과를 저장
   const [map, setMap] = useState(null);
   const [places, setPlaces] = useState([]);
   // inputText는 입력 필드의 현재 값을 추적, searchPlace는 검색할 장소를 저장
   const [inputText, setInputText] = useState("");
   const [searchPlace, setSearchPlace] = useState("");
-
-
   // 입력 필드에서 발생하는 이벤트를 처리하는 함수
   const onChange = (event) => {
     setInputText(event.target.value);
   };
 
   // 검색 버튼을 클릭했을 때의 이벤트를 처리하는 함수
-  const submitHandler2 = (event) => {
+  const searchLocationHandler = (event) => {
     event.preventDefault();
     setSearchPlace(inputText);
     setInputText("");
   };
+
+
 
   useEffect(() => {
     setSearchPlace(" ");
@@ -93,7 +102,7 @@ const CreateMap = ({selectedDay, setLocationList, setNewPlan, locationList}) => 
         let bounds = new kakao.maps.LatLngBounds();
 
         for (let i = 0; i < data.length; i++) {
-          displayMarker(data[i]);
+          displayMarker(data[i], i);
           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         }
         map.setBounds(bounds);
@@ -126,13 +135,25 @@ const CreateMap = ({selectedDay, setLocationList, setNewPlan, locationList}) => 
     }
   }, [searchPlace, map]);
 
-  function displayMarker(place, i) {
-
-    let marker = new kakao.maps.Marker({
-      map: map,
-      position: new kakao.maps.LatLng(place.y, place.x),
-    });
-
+  function displayMarker(place, index) {
+    let imageSrc =
+        `${markerSource}`, // 마커 이미지 url, 스프라이트 이미지를 씁니다
+      imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
+      imgOptions = {
+        spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+        spriteOrigin: new kakao.maps.Point(0, index * 46 + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+        offset: new kakao.maps.Point(13, 37), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+      },
+      markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+      marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x),
+        image: markerImage,
+      });
+    // let marker = new kakao.maps.Marker({
+    //   map: map,
+    //   position: new kakao.maps.LatLng(place.y, place.x),
+    // });
 
     // 클릭 이벤트 리스너를 추가하여, 마커 클릭 시 정보 창을 표시
     kakao.maps.event.addListener(marker, "mouseover", function () {
@@ -149,77 +170,90 @@ const CreateMap = ({selectedDay, setLocationList, setNewPlan, locationList}) => 
     });
 
     map.markers.push(marker);
-
-  }
-
-  function handleMouseOver(i) {
-    map.infowindows[i].open(map, map.markers[i]);
-  }
-
-  function handleMouseOut(i) {
-    map.infowindows[i].close();
   }
 
   const addLocationHandler = (place, day) => {
     // 이미 추가된 장소인지 확인
     const isPlaceAlreadyAdded = locationList.some(
-      item => item.name === place.place_name && item.day === day
+      (item) => item.name === place.place_name && item.day === day
     );
-    
-    if(isPlaceAlreadyAdded) {
+
+    if (isPlaceAlreadyAdded) {
       alert("이미 추가된 장소입니다.");
-      return ;
+      return;
     }
-    setLocationList(prevState => {
+    setLocationList((prevState) => {
       const newLocationList = [...prevState];
       const newPlace = {
         day: day,
         lat: parseFloat(place.y),
         lng: parseFloat(place.x),
         img: "#",
-        seq: newLocationList.filter(item => item.day === day).length + 1,
+        seq: newLocationList.filter((item) => item.day === day).length + 1,
         location: place.address_name,
         name: place.place_name,
       };
       newLocationList.push(newPlace);
 
       return newLocationList;
-
     });
-    setNewPlan(prevState => {
-      return {...prevState, plan_details: locationList};
-    })
-  }
+    setNewPlan((prevState) => {
+      return { ...prevState, plan_details: locationList };
+    });
+  };
 
   // 검색 창과 결과 리스트, 지도를 표시하는 렌더링 부분
   return (
-    <div className={styles.mapSection} style={{ display: "flex" }}>
+    <div className={styles.mapSection}>
       <div className={styles.searchSection} id="result-list">
-        <form className={styles.inputForm} onSubmit={submitHandler2}>
-          <input type="text" onChange={onChange} value={inputText} />
-          <button type="submit">검색</button>
+        <form onSubmit={searchLocationHandler} className={styles.inputForm}>
+          <input
+            className={styles.searchInput}
+            type="text"
+            onChange={onChange}
+            value={inputText}
+            placeholder="Search"
+          />
+          <img
+            className={styles.searchIcon}
+            src={searchIcon}
+            onClick={searchLocationHandler}
+            type="submit"
+          ></img>
         </form>
         {places.map((item, i) => (
-          <div
-            className={styles.searchList}
-            key={i}
-          >
-            <div className={styles.locationInfo}>
-              <span>{i + 1}</span>
-              <div>
+          <div className={styles.searchResult} key={i}>
+            <div className={styles.searchItem}>
+              <div
+                className={styles.markerNumber}
+                style={{
+                  backgroundImage: `url(${markerSource})`,
+                  backgroundPosition: `0px ${-i * 46}px`, // 마커 이미지의 위치를 조정합니다.
+                  width: '36px', // 이미지 요소의 너비를 조정합니다.
+                  height: '46px', // 이미지 요소의 높이를 조정합니다.
+                }}
+              ></div>
+              <div className={styles.locationInfo}>
                 <h5>{item.place_name}</h5>
                 {item.road_address_name ? (
-                  <div>
+                  <div className={styles.locationAddress}>
                     <div>{item.road_address_name}</div>
                     <span>{item.address_name}</span>
                   </div>
                 ) : (
-                  <span>{item.address_name}</span>
+                  <span className={styles.locationAddress}>
+                    {item.address_name}
+                  </span>
                 )}
-                <span>{item.phone}</span>
+                <div className={styles.locationPhone}>{item.phone}</div>
               </div>
             </div>
-            <button onClick={() => addLocationHandler(item, selectedDay)} className={styles.plusBtn}>+</button>
+            <button
+              onClick={() => addLocationHandler(item, selectedDay)}
+              className={styles.plusBtn}
+            >
+              +
+            </button>
           </div>
         ))}
       </div>
