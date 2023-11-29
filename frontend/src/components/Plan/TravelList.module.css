@@ -1,13 +1,17 @@
 .travelList{
   color: #000;
+  max-height: 740px;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   font-family: "Inter", sans-serif;
   justify-content: center;
+  overflow-y: auto;
 }
-
+.travelList::-webkit-scrollbar {
+  display: none;
+}
 .listIcon{
   margin: 0;
   margin-left: 10px;
@@ -18,16 +22,23 @@
 }
 
 
-.travelPlace{
+.travelLocations{
   margin-top: 10px;
-  display: flex;
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 40px auto 32px;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.deleteIcon{
+.locationName{
+  text-align: left;
+  font-size: 18px;
+
+}
+
+.travelLocations > .deleteIcon{
+  justify-content: end;
   margin: 0;
-  margin-right: 10px;
-  position: relative;
   width:28px;
   height:24px;
 }

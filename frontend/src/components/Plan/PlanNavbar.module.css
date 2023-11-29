@@ -1,6 +1,6 @@
 .header{
   display: grid;
-  grid-template-columns: 250px auto 12vw;
+  grid-template-columns: 280px auto 12vw;
   background-color: #e9efef;
   height: 80px;
   align-items: center;
@@ -57,19 +57,27 @@
   text-align: center;
   width: 60vw;
   justify-content: start;
-  margin-right: 2rem;
-}
 
+  overflow-x: scroll;
+
+}
+.days::-webkit-scrollbar {
+  display: none;
+}
 .day{
-  height: auto;
-  margin-right: 20px;
   color: #4a5568;
   font-family: "Inter", sans-serif;
   font-size: 20px;
   font-weight: bold;
+  line-height: 80px;
+  width: 100px;
+
 }
-.selectedDay{
-  color: red;
+.day > .selectedDay{
+
+  background-color: rgb(199, 197, 197);
+
+
 }
 
 .btns{

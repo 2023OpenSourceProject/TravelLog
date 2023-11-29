@@ -49,9 +49,9 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
         {locationList
           .filter((item) => item.day === selectedDay)
           .map((item, index) => (
-            <li className={styles.travelPlace} key={index}>
+            <li className={styles.travelLocations} key={index}>
               <img className={styles.listIcon} src={icon2} onClick={() => moveDownHandler(index)}></img>
-              <h5>{item.name}</h5>
+              <div className={styles.locationName}>{item.name}</div>
               <img
                 className={styles.deleteIcon}
                 src={deleteIcon}
