@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
-import styles from "./ReadReview.module.css";
+import styles from "./MyReview.module.css";
 import Navbar from "../UI/Navbar";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import arrowBack from "../../assets/arrow_back.svg";
 
-const ReadReview = () => {
+const MyReview = () => {
   const location = useLocation();
   const reviewId = location.state.reviewId;
   const [review, setReview] = useState([]);
   const [comment, setComment] = useState([]);
   const [newComment, setNewComment] = useState("");
   const date = new Date(review.createdAt);
-  console.log(date);
   const createdDate = {
     year: date.getFullYear(),
     month: (date.getMonth() + 1).toString().padStart(2, "0"),
     day: date.getDate().toString().padStart(2, "0"),
   };
-  console.log(createdDate);
-  const formattedDate = `${createdDate.year}-${createdDate.month}-${createdDate.day}`;
 
+  const formattedDate = `${createdDate.year}-${createdDate.month}-${createdDate.day}`;
   useEffect(() => {
     console.log(reviewId);
     axios
@@ -44,7 +42,6 @@ const ReadReview = () => {
       });
     console.log(comment.content);
   }, []);
-
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +74,7 @@ const ReadReview = () => {
       <div className={styles.body}>
         <div className={styles.container}>
           <div className={styles.header_box}>
-            <Link to="/ReviewList">
+            <Link to="/MyPage/myreview">
               <img src={arrowBack} />
             </Link>
             <h1 className={styles.header}>Review</h1>
@@ -128,4 +125,4 @@ const ReadReview = () => {
   );
 };
 
-export default ReadReview;
+export default MyReview;
