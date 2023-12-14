@@ -15,4 +15,5 @@ public class CommentDto {
     private LocalDate createdAt;
     private Long userId;
     private Long reviewId;
+    private String userName;
 }

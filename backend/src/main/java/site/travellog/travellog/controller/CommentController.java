@@ -1,10 +1,7 @@
 package site.travellog.travellog.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import site.travellog.travellog.dto.CommentDto;
 import site.travellog.travellog.service.CommentService;
 
@@ -29,4 +26,10 @@ public class CommentController {
         return commentDtoList;
     }
 
+    // 댓글 삭제
+    @PostMapping("/comment/delete/{commentId}")
+    public String deleteComment(@PathVariable Long commentId) {
+        commentService.deleteComment(commentId);
+        return "댓글 삭제 성공";
+    }
 }

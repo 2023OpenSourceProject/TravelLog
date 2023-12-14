@@ -18,6 +18,7 @@ public class Review {
     private Long id;
 
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String content;
     private String locate;
     private String img;
@@ -32,7 +33,7 @@ public class Review {
     @OneToMany(mappedBy = "review")
     private List<Comment> comments;
 
-    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "plan_id")
     private Plan plan;
 

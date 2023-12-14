@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import site.travellog.travellog.domain.Plan;
 import site.travellog.travellog.domain.Review;
 import site.travellog.travellog.dto.ReviewDto;
+import site.travellog.travellog.repository.CommentRepository;
 import site.travellog.travellog.repository.PlanRepository;
 import site.travellog.travellog.repository.ReviewRepository;
 import site.travellog.travellog.repository.UserRepository;
@@ -25,6 +26,7 @@ public class ReviewService {
         private final ReviewRepository reviewRepository;
         private final UserRepository userRepository;
         private final PlanRepository planRepository;
+        private final CommentRepository commentRepository;
 
         // 리뷰 생성
         public void createReview(String url, ReviewDto reviewDto) {
@@ -63,7 +65,7 @@ public class ReviewService {
             for (Review review : reviews) {
                 if (review.getIsPublic() == 1) {
                     ReviewDto reviewDto = new ReviewDto();
-
+                    reviewDto.setUserName(userRepository.findById(review.getUser().getId()).get().getName());
                     reviewDto.setReviewId(review.getId());
                     reviewDto.setTitle(review.getTitle());
                     reviewDto.setContent(review.getContent());
@@ -95,7 +97,7 @@ public class ReviewService {
             for (Review review : reviews) {
                 if (review.getUser().getId() == userId) {
                     ReviewDto reviewDto = new ReviewDto();
-
+                    reviewDto.setUserName(userRepository.findById(review.getUser().getId()).get().getName());
                     reviewDto.setReviewId(review.getId());
                     reviewDto.setTitle(review.getTitle());
                     reviewDto.setContent(review.getContent());
@@ -116,9 +118,12 @@ public class ReviewService {
         // 리뷰 1개 조회
         public ReviewDto getReview(Long reviewId) {
             Review review = reviewRepository.findById(reviewId).get();
+            review.setView(review.getView() + 1);
             ReviewDto reviewDto = new ReviewDto();
             reviewDto.setReviewId(review.getId());
             reviewDto.setTitle(review.getTitle());
+
+            reviewDto.setUserName(userRepository.findById(review.getUser().getId()).get().getName());
             reviewDto.setContent(review.getContent());
             reviewDto.setLocate(review.getLocate());
             reviewDto.setImgUrl(review.getImg());
@@ -128,5 +133,42 @@ public class ReviewService {
             reviewDto.setUserId(review.getUser().getId());
             reviewDto.setPlanId(review.getPlan().getId());
             return reviewDto;
+        }
+
+        // 리뷰 삭제
+        public void deleteReview(Long reviewId) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            Long userId = Long.parseLong(username);
+
+            Review review = reviewRepository.findById(reviewId).get();
+            if (review.getUser().getId() == userId) {
+                commentRepository.deleteByReviewId(reviewId);
+                reviewRepository.deleteById(reviewId);
+            }
+        }
+
+        // 리뷰 수정
+        public void updateReview(Long reviewId, ReviewDto reviewDto) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            Long userId = Long.parseLong(username) ;
+            Review review = reviewRepository.findById(reviewId).get();
+            if (review.getUser().getId() == userId) {
+                if (reviewDto.getTitle() != null) {
+                    review.setTitle(reviewDto.getTitle());
+                }
+                if (reviewDto.getContent() != null) {
+                    review.setContent(reviewDto.getContent());
+                }
+                if (reviewDto.getLocate() != null) {
+                    review.setLocate(reviewDto.getLocate());
+                }
+                if (reviewDto.getIsPublic() != null) {
+                    review.setIsPublic(reviewDto.getIsPublic());
+                }
+                reviewRepository.save(review);
+
+            }
         }
 }
