@@ -52,8 +52,25 @@ public class CommentService {
             commentDto.setUserId(comment.getUser().getId());
             commentDto.setReviewId(comment.getReview().getId());
             commentDtoList.add(commentDto);
+            commentDto.setUserName(comment.getUser().getName());
         }
 
         return commentDtoList;
+    }
+
+
+    // 댓글 삭제
+    public void deleteComment(Long commentId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Long userId = Long.parseLong(username);
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException("Invalid comment Id:" + commentId));
+
+        if(comment.getUser().getId().equals(userId)) {
+            commentRepository.deleteById(commentId);
+        } else {
+            throw new IllegalStateException("You do not have permission to delete this comment.");
+        }
+        commentRepository.deleteById(commentId);
     }
 }

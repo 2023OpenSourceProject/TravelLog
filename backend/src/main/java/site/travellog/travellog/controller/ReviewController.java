@@ -30,10 +30,6 @@ public class ReviewController {
     }
 
 
-
-
-
-
     // 리뷰 리스트 조회
     @GetMapping("/review")
     public List<ReviewDto> getReviewList() {
@@ -56,7 +52,21 @@ public class ReviewController {
         return review;
     }
 
+    // 리뷰 삭제
+    @PostMapping("/review/delete/{reviewId}")
+    public String deleteReview(@PathVariable Long reviewId) {
+        reviewService.deleteReview(reviewId);
+        return "리뷰 삭제 성공";
+    }
 
+
+
+    // 리뷰 수정
+    @PostMapping("/review/update/{reviewId}")
+    public String updateReview(@PathVariable Long reviewId, @RequestBody ReviewDto reviewDto) {
+        reviewService.updateReview(reviewId, reviewDto);
+        return "리뷰 수정 성공";
+    }
 
 }
 

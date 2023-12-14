@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.travellog.travellog.domain.Users;
+import site.travellog.travellog.dto.UserDto;
 import site.travellog.travellog.dto.sign_in.SignInRequest;
 import site.travellog.travellog.global.jwt.JwtService;
 import site.travellog.travellog.global.util.SendingEmail;
@@ -114,8 +115,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Users findById(final Long memberId) {
-        return userRepository.findById(memberId).get();
-
+    public UserDto findById(final Long memberId) {
+        Users user = userRepository.findById(memberId).get();
+        // user Dto에 저장
+        UserDto userDto = new UserDto();
+        userDto.setEmail(user.getEmail());
+        userDto.setName(user.getName());
+        userDto.setBirthday(user.getBirthday());
+        return userDto;
     }
 }

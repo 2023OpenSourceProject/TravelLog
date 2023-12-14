@@ -64,7 +64,7 @@ const RegisterForm = () => {
       .then((response) => {
         // 상태 코드가 200이 아닌 경우에도 성공 메시지를 표시하고 페이지를 이동시킵니다.
         alert("회원가입에 성공했습니다.");
-        navigate("/");
+        navigate("/Login");
       })
       .catch((error) => {
         // 오류가 발생한 경우 오류 메시지를 표시합니다.
