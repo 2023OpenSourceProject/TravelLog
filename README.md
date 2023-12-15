@@ -5,7 +5,7 @@
 ### 계획과 여행을 한번에, Travel Log 🚗
   
 [<img src="https://img.shields.io/badge/-dallog.me-important?style=flat&logo=google-chrome&logoColor=white" />](https://travellog.site)
-
+</div>
 ## ✈ 소개
 여행 계획을 세우기 위해 여행 계획 사이트와 <br>
 여행 후기를 확인하기 위해 블로그 사이트를 돌아다니며 계획을 세우시나요?<br>
@@ -14,6 +14,15 @@
 <img width="1665" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/8702d79e-8936-49c8-94dd-1c5599bfe6d6">
 
 ## 🛠 기술 스택
+
+### Front-end
+
+<img width="869" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/9855507a-b2d7-4d5c-a739-32031987649f">
+
+### Back-end
+
+<img width="895" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/0a9afe73-1d96-4f8e-ba90-1fa575c1b30e">
+
 
 ## ⚙️ 아키텍처
 <img width="565" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/2bd66c99-f28a-422c-b1ad-5e26665392de">
