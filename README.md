@@ -19,13 +19,14 @@
 
 ### Front-end
 
-<img width="586" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/be917855-022e-477d-b009-9c741a2e200e">
+<img width="1006" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/9d5a8ba5-284c-4e5f-8158-9a8a8fcd544d">
 
 
 
 ### Back-end
 
-<img width="664" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/fef3c6eb-5a10-4138-9f84-2f61da6883ba">
+<img width="830" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/56e8a96a-afdd-441d-b09d-5e22b7c4512a">
+
 
 
 
