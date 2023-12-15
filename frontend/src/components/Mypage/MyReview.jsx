@@ -135,6 +135,14 @@ const MyReview = () => {
           </div>
 
           <div className={styles.buttons}>
+            <Link
+                to={`/EditReview/${review.reviewId}`}
+                state={{reviewId: review.reviewId}}
+                key={review.reviewId}
+                style={{textDecoration: "none"}}
+            >
+              <button className={styles.editButton}>리뷰 수정</button>
+            </Link>
             <button className={styles.deleteButton2} onClick={handleDelete}>리뷰 삭제</button>
           </div>
 
