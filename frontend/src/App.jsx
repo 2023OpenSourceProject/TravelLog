@@ -13,6 +13,7 @@ import ReadReview from "./components/TravelReview/ReadReview.jsx";
 import ReviewList from "./components/TravelReview/ReviewList.jsx";
 import Mypage from "./components/Mypage/Mypage.jsx";
 import MyReview from "./components/Mypage/MyReview.jsx";
+import EditReview from "./components/TravelReview/EditReview.jsx";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/ReadReview/*" element={<ReadReview />}></Route>
         <Route path="/MyPage/*" element={<Mypage />}></Route>
         <Route path="/MyReview/*" element={<MyReview />}></Route>
+        <Route path="/EditReview/*" element={<EditReview />}></Route>
 
         <Route path="*" element={<NotFound/>}></Route>
       </Routes>
