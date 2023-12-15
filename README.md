@@ -9,7 +9,7 @@
 </div>
 
 ## ✈ 소개
-여행 계획을 세우기 위해 여행 계획 사이트와 <br>
+아직도 여행 계획을 세우기 위해 여행 계획 사이트와 <br>
 여행 후기를 확인하기 위해 블로그 사이트를 돌아다니며 계획을 세우시나요?<br>
 이제 계획과 후기를 한번에 확인할 수 있는 Travel Log를 이용하세요!
 ## 🖥 서비스 화면
@@ -19,11 +19,14 @@
 
 ### Front-end
 
-<img width="869" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/9855507a-b2d7-4d5c-a739-32031987649f">
+<img width="586" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/be917855-022e-477d-b009-9c741a2e200e">
+
+
 
 ### Back-end
 
-<img width="895" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/0a9afe73-1d96-4f8e-ba90-1fa575c1b30e">
+<img width="664" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/fef3c6eb-5a10-4138-9f84-2f61da6883ba">
+
 
 
 ## ⚙️ 아키텍처
