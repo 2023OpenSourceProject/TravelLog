@@ -4,7 +4,7 @@
   
 ### 계획과 여행을 한번에, Travel Log 🚗
   
-[<img src="https://img.shields.io/badge/-dallog.me-important?style=flat&logo=google-chrome&logoColor=white" />](https://travellog.site)
+[<img src="https://img.shields.io/badge/-travellog.site-important?style=flat&logo=google-chrome&logoColor=white" />](https://travellog.site)
 
 </div>
 
