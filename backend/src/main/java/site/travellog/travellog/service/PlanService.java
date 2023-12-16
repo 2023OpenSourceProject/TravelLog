@@ -53,7 +53,7 @@ public class PlanService {
             planDetail.setImg(planDetailDto.getImg());
             planDetail.setDay(planDetailDto.getDay());
             planDetail.setSeq(planDetailDto.getSeq());
-
+            planDetail.setCategory(planDetailDto.getCategory());
             plan.addPlanDetail(planDetail);
         }
 
@@ -89,6 +89,7 @@ public class PlanService {
                 planDetailDto.setImg(planDetail.getImg());
                 planDetailDto.setDay(planDetail.getDay());
                 planDetailDto.setSeq(planDetail.getSeq());
+                planDetailDto.setCategory(planDetail.getCategory());
 
                 planDetailDtos.add(planDetailDto);
             }
@@ -135,6 +136,7 @@ public class PlanService {
             planDetailDto.setImg(planDetail.getImg());
             planDetailDto.setDay(planDetail.getDay());
             planDetailDto.setSeq(planDetail.getSeq());
+            planDetailDto.setCategory(planDetail.getCategory());
 
             planDetailDtos.add(planDetailDto);
         }

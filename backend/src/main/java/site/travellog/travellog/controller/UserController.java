@@ -51,6 +51,13 @@ public class UserController {
         return "비밀번호 초기화 성공";
     }
 
+    @GetMapping("/user/info")
+    public UserDto getUser() {
+        userService.getUser();
+        UserDto userDto = userService.getUser();
+        return userDto;
+    }
+
 
 
 

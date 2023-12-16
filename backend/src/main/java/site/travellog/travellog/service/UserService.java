@@ -124,4 +124,18 @@ public class UserService {
         userDto.setBirthday(user.getBirthday());
         return userDto;
     }
+
+    public UserDto getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Long userId = Long.parseLong(username);
+        Users user = userRepository.findById(userId).get();
+        UserDto userDto = new UserDto();
+
+        userDto.setUserId(user.getId());
+        userDto.setEmail(user.getEmail());
+        userDto.setName(user.getName());
+        userDto.setBirthday(user.getBirthday());
+        return userDto;
+    }
 }

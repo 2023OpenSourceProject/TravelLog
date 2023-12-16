@@ -20,6 +20,7 @@ public class PlanDetail {
     private String img;
     private int day;
     private int seq;
+    private String category;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="plan_id")

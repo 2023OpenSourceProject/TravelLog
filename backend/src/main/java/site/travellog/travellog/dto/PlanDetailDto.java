@@ -16,5 +16,6 @@ public class PlanDetailDto {
     private String img;
     private int day;
     private int seq;
+    private String category;
 
 }
