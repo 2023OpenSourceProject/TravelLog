@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useMatch } from "react-router-dom";
 import styles from './MySideBar.module.css';
 
 function MySideBar() {
@@ -10,18 +10,17 @@ function MySideBar() {
     ];
     return (
         <div className={styles.side}>
-            <h1 className={styles.title}>마이페이지</h1> {/* 타이틀 추가 */}
-            <hr className={styles.line}/> {/* 밑줄 추가 */}
+            <hr className={styles.line}/>
             <br/>
             <div className={styles.menu}>
                 {menus.map((menu, index) => {
+                    let match = useMatch(menu.path);
                     return (
                         <NavLink
                             exact={true}
-                            style={{color: "gray", textDecoration: "none"}}
                             to={menu.path}
                             key={index}
-                            activeStyle={{color: "black"}}
+                            className={match ? styles.activeLink : styles.link}
                         >
                             {menu.name}
                         </NavLink>

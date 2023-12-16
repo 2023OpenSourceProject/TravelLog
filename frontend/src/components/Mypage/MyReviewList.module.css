@@ -92,4 +92,14 @@
   font-weight: 800;
   line-height: 120%; /* 57.6px */
 }
-
+.notFoundSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+.no_review_message {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+}
