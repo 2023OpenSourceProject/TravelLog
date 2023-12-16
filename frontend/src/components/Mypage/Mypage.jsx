@@ -24,7 +24,7 @@ const Mypage = () => {
     return (
         <>
             <Navbar />
-            <div style={{ display: 'flex', height: '100vh' }}>
+            <div style={{ display: 'flex'}}>
                 <MySideBar />
                 <div style={{ flex: 1 }}>
                     <Routes>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Setting.module.css";
 import axios from "axios";
 import accountCircie from "../../assets/account_circle.svg";
@@ -9,10 +9,28 @@ const Setting = () => {
   const [birthday, setBirthday] = useState("");
   const params = new URLSearchParams();
 
+  const token = localStorage.getItem("token");
+  
+  const [myInfo, setMyInfo] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://api.travellog.site:8080/user/info", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setMyInfo(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem("token");
-
+    
     const changeData = {};
     if (password) changeData.password = password;
     if (name) changeData.name = name;
@@ -47,7 +65,7 @@ const Setting = () => {
       <div className={styles.container}>
         <div className={styles.image}>
           <img src={accountCircie}></img>
-          <p>내 프로필</p>
+          <p className={styles.name}>{myInfo.name}</p>
         </div>
 
         <form onSubmit={handleSubmit}>

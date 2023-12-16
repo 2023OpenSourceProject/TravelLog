@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MyReviewList.module.css";
 import { Link } from "react-router-dom";
+import noResultImage from "../../assets/image/noResult2.png";
 import axios from "axios";
 
-const MyReview = () => {
+const MyReviewList = () => {
   const token = localStorage.getItem("token");
   const [myReviewlist, setMyReviewList] = useState([]);
   useEffect(() => {
@@ -25,8 +26,9 @@ const MyReview = () => {
   return (
     <div className={styles.body}>
       <p className={styles.title}>My Review</p>
-      <div className={styles.container}>
-        {[...myReviewlist].reverse().map((review) => (
+      {myReviewlist.length > 0 ? (
+        <div className={styles.container}>
+          {[...myReviewlist].reverse().map((review) => (
           <Link
             to={`/MyReview/${review.reviewId}`}
             state={{ reviewId: review.reviewId }}
@@ -47,10 +49,16 @@ const MyReview = () => {
               </div>
             </div>
           </Link>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.notFoundSection}>
+          <img src={noResultImage}/>
+          <div className={styles.no_review_message}>작성한 리뷰가 없습니다</div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default MyReview;
+export default MyReviewList;

@@ -12,7 +12,7 @@
 .header_box {
   width: 900px;
   display: flex;
-  margin: 10px auto;
+  margin: 0px auto;
   justify-content: space-between;
   align-items: center;
 }
@@ -224,3 +224,4 @@
 .editButton:hover {
   background-color: #45a049; /* 마우스 오버시 버튼 배경색 변경 */
 }
+
