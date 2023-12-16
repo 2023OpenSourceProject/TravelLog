@@ -10,11 +10,12 @@
 
 .mapSection{
   display: grid;
-  grid-template-columns: 21.5vw auto;
+  grid-template-columns: 22vw auto;
 
 }
 .searchSection {
-  max-height: 740px;
+  max-width: 22vw;
+  max-height: 48vw;
   overflow-y: scroll;
   margin-right: 1.3vw;
 }
@@ -24,15 +25,20 @@
 
 .searchResult {
   display: flex;
-  min-height: 100px;
-  margin-bottom: 10px;
-  background-color: rgb(249, 249, 235);
-  border: gray solid;
+  margin-left: 0.1vw;
+  max-width: 20.5vw;
+  min-height: 12vh;
+  margin-bottom: 2vh;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   border-radius: 3px 3px 3px 3px;
-
+}
+.searchResult:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 2px 2px rgba(0,0,0,0.22);
 }
 .markerNumber {
   display: block;
+  margin-right: 1vw;
 }
 .searchItem{
   width: 330px; 
@@ -43,20 +49,28 @@
   margin-left: 5px;
 
 }
-
+.locationCategory{
+  font-size: 13px;
+  margin-top: 1vh;
+  color: gray;
+  overflow-x: 'scroll'; 
+  white-space: 'nowrap'; 
+}
 .locationAddress {
   font-size: 13px;
+  color: gray;
   overflow-x: 'scroll'; 
   white-space: 'nowrap'; 
 }
 .locationPhone {
+  color: gray;
   font-size: 12px;
 }
 
 .inputForm {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 20.23vw;
+  width: 20.7vw;
   display: flex;
   border-radius: 5px;
   border: solid 1px rgba(0, 0, 0, 0.3);
@@ -84,4 +98,17 @@
   width: 24px;
   opacity: 50%;
   margin-right: 10px;
+}
+
+.noResultSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  height: 75%;
+}
+
+.addBtn {
+  margin-right: 1vw;
 }

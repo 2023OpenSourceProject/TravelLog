@@ -142,6 +142,7 @@ const ModalComponent = ({
                 endDate={modalEndDate}
                 locale={ko}
                 dateFormat="yyyy-MM-dd"
+                zIndex="999"
                 customInput={<ExampleCustomInput />}
               />
               <p style={{marginLeft:"20px", marginRight:"20px", fontWeight:"bold"}}>-</p>

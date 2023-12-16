@@ -3,7 +3,8 @@ import styles from "./NewPlan.module.css";
 import { Map, MapTypeControl, ZoomControl } from "react-kakao-maps-sdk";
 import useKakaoLoader from "./useKakaoLoader";
 import searchIcon from "../../assets/searchIcon.png";
-
+import notFound from "../../assets/image/noResult2.png";
+import addBtn from "../../assets/addBtn.svg";
 
 const CreateMap = ({
   selectedDay,
@@ -13,7 +14,8 @@ const CreateMap = ({
 }) => {
   let lat, lng;
   let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-  let markerSource = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
+  let markerSource =
+    "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
 
   // map은 지도 객체를 저장, places는 검색 결과를 저장
   const [map, setMap] = useState(null);
@@ -32,8 +34,6 @@ const CreateMap = ({
     setSearchPlace(inputText);
     setInputText("");
   };
-
-
 
   useEffect(() => {
     setSearchPlace(" ");
@@ -109,6 +109,7 @@ const CreateMap = ({
 
         // 검색 결과를 places 상태에 저장
         setPlaces(data);
+        console.log(data);
       }
       // 검색 결과가 없을 경우 리스트 초기화해주고 중심좌표를 현재 위치로
       else if (status === kakao.maps.services.Status.ZERO_RESULT) {
@@ -120,6 +121,7 @@ const CreateMap = ({
             map.setCenter(new kakao.maps.LatLng(lat, lng));
             map.setLevel(3, { anchor: new kakao.maps.LatLng(lat, lng) });
           }
+
           function failGeo(event) {
             console.log("Error Geolocation!");
             map.setCenter(new kakao.maps.LatLng(37.537183, 127.005454));
@@ -136,8 +138,7 @@ const CreateMap = ({
   }, [searchPlace, map]);
 
   function displayMarker(place, index) {
-    let imageSrc =
-        `${markerSource}`, // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    let imageSrc = `${markerSource}`, // 마커 이미지 url, 스프라이트 이미지를 씁니다
       imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
       imgOptions = {
         spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
@@ -221,41 +222,44 @@ const CreateMap = ({
             type="submit"
           ></img>
         </form>
-        {places.map((item, i) => (
-          <div className={styles.searchResult} key={i}>
-            <div className={styles.searchItem}>
-              <div
-                className={styles.markerNumber}
-                style={{
-                  backgroundImage: `url(${markerSource})`,
-                  backgroundPosition: `0px ${-i * 46}px`, // 마커 이미지의 위치를 조정합니다.
-                  width: '36px', // 이미지 요소의 너비를 조정합니다.
-                  height: '46px', // 이미지 요소의 높이를 조정합니다.
-                }}
-              ></div>
-              <div className={styles.locationInfo}>
-                <h5>{item.place_name}</h5>
-                {item.road_address_name ? (
-                  <div className={styles.locationAddress}>
-                    <div>{item.road_address_name}</div>
-                    <span>{item.address_name}</span>
-                  </div>
-                ) : (
+        {places.length > 0 ? (
+          places.map((item, i) => (
+            <div className={styles.searchResult} key={i}>
+              <div className={styles.searchItem}>
+                <div
+                  className={styles.markerNumber}
+                  style={{
+                    backgroundImage: `url(${markerSource})`,
+                    backgroundPosition: `0px ${-i * 46}px`, // 마커 이미지의 위치를 조정합니다.
+                    width: "36px", // 이미지 요소의 너비를 조정합니다.
+                    height: "46px", // 이미지 요소의 높이를 조정합니다.
+                  }}
+                ></div>
+                <div className={styles.locationInfo}>
+                  <h5>{item.place_name}</h5>
+                  <p className={styles.locationCategory}>
+                    {item.category_name}
+                  </p>
                   <span className={styles.locationAddress}>
                     {item.address_name}
                   </span>
-                )}
-                <div className={styles.locationPhone}>{item.phone}</div>
+                
+                  <div className={styles.locationPhone}>{item.phone}</div>
+                </div>
               </div>
+              <img className={styles.addBtn} src={addBtn} alt="addBtn" 
+                  onClick={() => addLocationHandler(item, selectedDay)}
+                />
+
             </div>
-            <button
-              onClick={() => addLocationHandler(item, selectedDay)}
-              className={styles.plusBtn}
-            >
-              +
-            </button>
+          ))
+        ) : (
+          <div className={styles.noResultSection}>
+            <img style={{width:"18vw"}} src={notFound} alt="notFound"/>
+            <div>검색 결과가 없습니다</div>
+            <div>다른 키워드로 검색해보세요!</div>
           </div>
-        ))}
+        )}
       </div>
 
       <div // 지도를 표시할 Container

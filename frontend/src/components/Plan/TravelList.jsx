@@ -25,9 +25,11 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
 
   const moveDownHandler = (indexToMove) => {
     setLocationList((prevState) => {
-      const selectedDayPlaces = prevState.filter((item) => item.day === selectedDay);
+      const selectedDayPlaces = prevState.filter(
+        (item) => item.day === selectedDay
+      );
 
-      if(indexToMove < selectedDayPlaces.length - 1) {
+      if (indexToMove < selectedDayPlaces.length - 1) {
         const temp = selectedDayPlaces[indexToMove];
         selectedDayPlaces[indexToMove] = selectedDayPlaces[indexToMove + 1];
         selectedDayPlaces[indexToMove + 1] = temp;
@@ -37,7 +39,9 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
         item.seq = index + 1;
       });
 
-      const otherDayPlaces = prevState.filter((item) => item.day !== selectedDay);
+      const otherDayPlaces = prevState.filter(
+        (item) => item.day !== selectedDay
+      );
 
       return [...otherDayPlaces, ...selectedDayPlaces];
     });
@@ -46,19 +50,27 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
   return (
     <>
       <ul className={styles.travelList}>
-        {locationList
-          .filter((item) => item.day === selectedDay)
-          .map((item, index) => (
-            <li className={styles.travelLocations} key={index}>
-              <img className={styles.listIcon} src={icon2} onClick={() => moveDownHandler(index)}></img>
-              <div className={styles.locationName}>{item.name}</div>
-              <img
-                className={styles.deleteIcon}
-                src={deleteIcon}
-                onClick={() => removePlaceHandler(index)}
-              ></img>
-            </li>
-          ))}
+        {locationList.length > 0 ? (
+          locationList.filter((item) => item.day === selectedDay).map((item, index) => (
+              <li className={styles.travelLocations} key={index}>
+                <img
+                  className={styles.listIcon}
+                  src={icon2}
+                  onClick={() => moveDownHandler(index)}
+                ></img>
+                <div className={styles.locationName}>{item.name}</div>
+                <img
+                  className={styles.deleteIcon}
+                  src={deleteIcon}
+                  onClick={() => removePlaceHandler(index)}
+                ></img>
+              </li>
+            ))
+        ) : (
+          <div>
+            <p>추가한 여행지가 없습니다</p>
+          </div>
+        )}
       </ul>
     </>
   );
