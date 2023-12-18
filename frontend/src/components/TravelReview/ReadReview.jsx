@@ -5,6 +5,7 @@ import axios from "axios";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import arrowBack from "../../assets/arrow_back.svg";
 import PlanDetails from "./PlanDetails";
+import Footer from "../UI/Footer";
 
 const ReadReview = () => {
     const location = useLocation();
@@ -192,7 +193,7 @@ const ReadReview = () => {
                         </div>
                     )}
 
-
+                    <p style={{marginLeft:"150px", fontWeight:"bold", fontSize:"20px", fontFamily: "Poppins"}}>여행 계획</p>
                     {/* 내가 만든 계획 일정 출력해주는 부분 */}
                     <PlanDetails plan={plan}/>
 
@@ -241,6 +242,7 @@ const ReadReview = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

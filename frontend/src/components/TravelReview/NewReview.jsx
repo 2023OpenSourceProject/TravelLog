@@ -141,6 +141,7 @@ const NewReview = () => {
               name="title"
               placeholder="제목을 입력하세요"
               required
+              maxLength={25}
               onChange={titleChangeHandler}
             ></input>
             <div>

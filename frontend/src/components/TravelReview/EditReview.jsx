@@ -118,6 +118,7 @@ const EditReview = () => {
               name="title"
               placeholder="제목을 입력하세요"
               required
+              maxLength={25}
               value={inputTitle}
               onChange={titleChangeHandler}
             ></input>

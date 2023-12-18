@@ -1,6 +1,15 @@
 import React from "react";
 import styles from "./PlanDetails.module.css";
-import defaultIcon from "../../assets/locationIcon/defaultIcon.svg";
+import defaultIcon from "../../assets/locationIcon/default.png";
+import accomodationIcon from "../../assets/locationIcon/Accomodation.png";
+import cafeIcon from "../../assets/locationIcon/Cafe.png";
+import convenienceStoreIcon from "../../assets/locationIcon/ConvenienceStore.png";
+import departmentStoreIcon from "../../assets/locationIcon/DepartmentStore.png";
+import hospitalIcon from "../../assets/locationIcon/Hospital.png";
+import restaurantIcon from "../../assets/locationIcon/Restaurant.png";
+import schoolIcon from "../../assets/locationIcon/School.png";
+import transpotationIcon from "../../assets/locationIcon/Transpotation.png";
+import arrowIcon from "../../assets/arrowIcon.png";
 
 const PlanDetails = ({ plan }) => {
 
@@ -16,7 +25,30 @@ const PlanDetails = ({ plan }) => {
     return acc;
   }, {});
 
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case "병원" :
+        return hospitalIcon; 
+      case "학교":
+        return schoolIcon;
+      case "음식점":
+        return restaurantIcon;
+      case "카페":
+        return cafeIcon;
+      case "지하철역" :
+        return transpotationIcon;
+      case "대형마트" :
+        return departmentStoreIcon;
+      case "편의점" :
+        return convenienceStoreIcon;
+      case "숙박" :
+        return accomodationIcon;
+      default:
+        return defaultIcon;
+    }
+  }
   return (
+    
     // 전체 플랜 디테일을 담을 div
     <div className={styles.planDetailSection}>
       {/* N일차 별로 div를 나눔 1일차-2일차-3일차(마지막날짜)이면 3개의 planDetail div가 있어야함 */}
@@ -29,9 +61,15 @@ const PlanDetails = ({ plan }) => {
               .map((detail) => (
                 <div className={styles.planLocationSection} key={detail.planDetailId}>
                   <div className={styles.location}>
-                    <img src={defaultIcon} alt="default" />
+                    <div className={styles.arrowSection}>
+                      <img className={styles.categoryIcon} src={getCategoryIcon(detail.category)} alt="default" />
+                      <img className={styles.arrow} src={arrowIcon} alt="arrow" />
+                    </div>
+
                     <div className={styles.detailName}>{detail.name}</div>
                   </div>
+                  <div ></div>
+
                 </div>
               ))}
           </div>

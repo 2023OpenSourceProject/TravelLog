@@ -7,6 +7,13 @@
   padding-top: 10px;
   padding-bottom: 10px;
   justify-content: center;
+  max-height: 600px;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+.planDetailSection::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 .planDetail {
   margin-bottom: 2vh;
@@ -22,7 +29,7 @@
 .locations{
   display: flex;
   max-width: 100%;
-  gap: 3vw;
+
   overflow-x: auto;
 
 }
@@ -44,11 +51,24 @@
 .planLocationSection {
   display: flex;
 }
+.categoryIcon {
 
+  width: 120px;
+}
+.arrowSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrow{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 30px;
+  height: 28px;
+}
 .detailName {
+  font-size: 14px;
   text-align: center;
-  max-width: 168px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  max-width: 120px;
+  white-space: pre-line;
 }
