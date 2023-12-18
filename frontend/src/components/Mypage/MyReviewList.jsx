@@ -16,7 +16,6 @@ const MyReviewList = () => {
       })
       .then((response) => {
         setMyReviewList(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);

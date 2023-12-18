@@ -9,7 +9,6 @@ import axios from "axios";
 const PlanNavbar = (props) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  console.log("token : " + token);
 
   const editClickHandler = () => {
     props.setModalOpen(true);

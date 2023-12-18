@@ -22,7 +22,6 @@ const NewReview = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("token : " + token);
     if (token) {
       setIsLoggedIn(true);
     } else {
@@ -64,7 +63,6 @@ const NewReview = () => {
       })
       .then((response) => {
         setPlanList(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -106,7 +104,6 @@ const NewReview = () => {
     formData.append("isPublic", isPublic);
     formData.append("content", editorData);
     formData.append("locate", inputLocate);
-    console.log(formData);
     for (var pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
@@ -150,18 +147,14 @@ const NewReview = () => {
               <CKEditor
                 editor={ClassicEditor}
                 onReady={(editor) => {
-                  console.log("Editor is ready to use!", editor);
                 }}
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setEditorData(data); // 에디터의 데이터를 상태 변수에 저장
-                  console.log({ event, editor, data });
                 }}
                 onBlur={(event, editor) => {
-                  console.log("Blur.", editor);
                 }}
                 onFocus={(event, editor) => {
-                  console.log("Focus.", editor);
                 }}
               />
             </div>

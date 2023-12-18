@@ -10,7 +10,6 @@ const MainPage = () => {
   // 메인페이지 접속시 토큰을 로그로 출력
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log("token : " + token);
     if(token) {
       setIsLoggedIn(true);
     }
