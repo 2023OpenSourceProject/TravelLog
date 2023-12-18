@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ModalComponent from "../UI/ModalComponent";
-import CreateMap from "./CreateMap";
+import CreateMap from "../Plan/CreateMap";
 import TravelList from "./TravelList";
 import styles from "./NewPlan.module.css";
 import PlanNavbar from "./PlanNavbar";
