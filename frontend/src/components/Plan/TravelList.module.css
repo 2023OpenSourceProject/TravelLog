@@ -8,6 +8,7 @@
   font-family: "Inter", sans-serif;
   justify-content: center;
   overflow-y: auto;
+  margin-right: 1vw;
 }
 .travelList::-webkit-scrollbar {
   display: none;
@@ -42,3 +43,23 @@
   width:28px;
   height:24px;
 }
+
+.noLocations {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemEnter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.itemEnterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms;
+}
+

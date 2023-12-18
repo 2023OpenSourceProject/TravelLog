@@ -157,7 +157,9 @@ const ModalComponent = ({
                 dateFormat="yyyy-MM-dd"
                 customInput={<ExampleCustomInput />}
               />
+
             </div>
+            <div className={styles.maxDateNotice}>여행 일자는 <span style={{fontWeight:"bold"}}>최대 10일</span>까지 설정가능합니다</div>
             <button type="submit" className={styles.btn}>
               Continue
             </button>
