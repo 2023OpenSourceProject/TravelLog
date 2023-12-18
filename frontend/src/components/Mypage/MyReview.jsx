@@ -118,7 +118,7 @@ const MyReview = () => {
       <div className={styles.body}>
         <div className={styles.container}>
           <div className={styles.header_box}>
-            <Link to="/MyPage/myreview">
+            <Link to="/MyPage/MyReview">
               <img src={arrowBack}/>
             </Link>
             <h1 className={styles.header}>Review</h1>
