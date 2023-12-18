@@ -1,12 +1,14 @@
+import React from "react";
 import styles from "./PlanDetails.module.css";
 import defaultIcon from "../../assets/locationIcon/defaultIcon.svg";
-import { useEffect } from "react";
 
 const PlanDetails = ({ plan }) => {
+
   console.log(plan);
   if (!plan || !plan.plan_details) {
     return null;  // 또는 로딩중임을 나타내는 컴포넌트를 반환할 수 있습니다.
   }
+
 
   const groupedPlanDetails = plan.plan_details.reduce((acc, cur) => {
     if (!acc[cur.day]) acc[cur.day] = [];
@@ -19,18 +21,21 @@ const PlanDetails = ({ plan }) => {
     <div className={styles.planDetailSection}>
       {/* N일차 별로 div를 나눔 1일차-2일차-3일차(마지막날짜)이면 3개의 planDetail div가 있어야함 */}
       {Object.keys(groupedPlanDetails).map((day) => (
-        <div className={styles.planDetail}>
+        <div className={styles.planDetail} key={day} >
           <div className={styles.planDay}>Day {day}</div>
-          {groupedPlanDetails[day]
-            .sort((a, b) => a.seq - b.seq)
-            .map((detail) => (
-              <div className={styles.planLocationSection}>
-                <div className={styles.location}>
-                  <img src={defaultIcon} alt="default" />
-                  <div>{detail.name}</div>
+          <div className={styles.locations} >
+            {groupedPlanDetails[day]
+              .sort((a, b) => a.seq - b.seq)
+              .map((detail) => (
+                <div className={styles.planLocationSection} key={detail.planDetailId}>
+                  <div className={styles.location}>
+                    <img src={defaultIcon} alt="default" />
+                    <div className={styles.detailName}>{detail.name}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
+
         </div>
       ))}
 
