@@ -4,11 +4,12 @@ import Navbar from "../UI/Navbar";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import arrowBack from "../../assets/arrow_back.svg";
+import PlanDetails from "./PlanDetails";
 
 const ReadReview = () => {
   const location = useLocation();
   const reviewId = location.state.reviewId;
-  const [planId, SetPlanId] = useState();
+  const [planId, setPlanId] = useState();
   const [plan, setPlan] = useState({});
   const [review, setReview] = useState([]);
   const [comment, setComment] = useState([]);
@@ -28,19 +29,9 @@ const ReadReview = () => {
       .get(`https://api.travellog.site:8080/review/${reviewId}`, {})
       .then((response) => {
         setReview(response.data);
-        axios
-          .get(`https://api.travellog.site:8080/plan/${response.data.planId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((responses) => {
-            setPlan(responses.data);
+        console.log(response.data)
+        setPlanId(response.data.planId);
 
-          })
-          .catch((error) => {
-            console.log("Error!", error);
-          });
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -57,6 +48,19 @@ const ReadReview = () => {
 
 
   }, []);
+
+  useEffect(()=> {
+    axios
+    .get(`https://api.travellog.site:8080/viewplan/${planId}`, {})
+    .then((response) => {
+      setPlan(response.data);
+      console.log(plan);
+    })
+    .catch((error) => {
+      console.log("Error!", error);
+    });
+  }, [planId]);
+
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -161,9 +165,8 @@ const ReadReview = () => {
           </div>
 
           {/* 내가 만든 계획 일정 출력해주는 부분 */}
-          <div className={styles.planDetailSection}>
-            {plan.plan_id}
-          </div>
+          <PlanDetails plan={plan}/>
+
 
           {/* 사용자가 설정한 이미지 출력 */}
           <img className={styles.image} src={`${review.imgUrl}`} />
