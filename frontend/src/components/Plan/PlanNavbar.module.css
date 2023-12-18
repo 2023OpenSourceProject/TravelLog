@@ -1,6 +1,6 @@
 .header{
   display: grid;
-  grid-template-columns: 280px auto 12vw;
+  grid-template-columns: 300px auto 12vw;
   background-color: #e9efef;
   height: 80px;
   align-items: center;

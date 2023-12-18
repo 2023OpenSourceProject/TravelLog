@@ -5,7 +5,7 @@
 
 .body {
   display: grid;
-  grid-template-columns: 280px auto;
+  grid-template-columns: 300px auto;
 }
 
 .mapSection{
@@ -81,6 +81,8 @@
 }
 .searchInput {
   display: flex;
+  position: sticky;
+  top: 10px;
   overflow: auto;
   border: none;
   justify-content: center;

@@ -3,8 +3,9 @@ import styles from "./NewPlan.module.css";
 import { Map, MapTypeControl, ZoomControl } from "react-kakao-maps-sdk";
 import useKakaoLoader from "./useKakaoLoader";
 import searchIcon from "../../assets/searchIcon.png";
-import notFound from "../../assets/image/noResult2.png";
+import notFound from "../../assets/image/notFound.svg";
 import addBtn from "../../assets/addBtn.svg";
+import selectedBtn from "../../assets/selectedIcon.svg";
 
 const CreateMap = ({
   selectedDay,
@@ -193,6 +194,7 @@ const CreateMap = ({
         seq: newLocationList.filter((item) => item.day === day).length + 1,
         location: place.address_name,
         name: place.place_name,
+        category: place.category_group_name,
       };
       newLocationList.push(newPlace);
 
@@ -255,7 +257,7 @@ const CreateMap = ({
           ))
         ) : (
           <div className={styles.noResultSection}>
-            <img style={{width:"18vw"}} src={notFound} alt="notFound"/>
+            <img style={{width:"10vw"}} src={notFound} alt="notFound"/>
             <div>검색 결과가 없습니다</div>
             <div>다른 키워드로 검색해보세요!</div>
           </div>

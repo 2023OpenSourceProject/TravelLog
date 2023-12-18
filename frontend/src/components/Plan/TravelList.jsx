@@ -1,6 +1,8 @@
 import styles from "./TravelList.module.css";
 import icon2 from "../../assets/arrowIcon.svg";
 import deleteIcon from "../../assets/deleteIcon.svg";
+import noResult from "../../assets/image/noResult2.png";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const TravelList = ({ selectedDay, locationList, setLocationList }) => {
   const removePlaceHandler = (indexToRemove) => {
@@ -51,24 +53,27 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
     <>
       <ul className={styles.travelList}>
         {locationList.length > 0 ? (
-          locationList.filter((item) => item.day === selectedDay).map((item, index) => (
-              <li className={styles.travelLocations} key={index}>
-                <img
-                  className={styles.listIcon}
-                  src={icon2}
-                  onClick={() => moveDownHandler(index)}
-                ></img>
-                <div className={styles.locationName}>{item.name}</div>
-                <img
-                  className={styles.deleteIcon}
-                  src={deleteIcon}
-                  onClick={() => removePlaceHandler(index)}
-                ></img>
-              </li>
-            ))
+            locationList
+              .filter((item) => item.day === selectedDay)
+              .map((item, index) => (
+                  <li className={styles.travelLocations} key={index}>
+                    <img
+                      className={styles.listIcon}
+                      src={icon2}
+                      onClick={() => moveDownHandler(index)}
+                    ></img>
+                    <div className={styles.locationName}>{item.name}</div>
+                    <img
+                      className={styles.deleteIcon}
+                      src={deleteIcon}
+                      onClick={() => removePlaceHandler(index)}
+                    ></img>
+                  </li>
+              ))
         ) : (
-          <div>
-            <p>추가한 여행지가 없습니다</p>
+          <div className={styles.noLocations}>
+            <img style={{ width: "15vw" }} src={noResult} alt="noResult" />
+            <div>추가한 여행지가 없습니다</div>
           </div>
         )}
       </ul>
