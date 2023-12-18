@@ -1,11 +1,16 @@
 .body {
   margin: 3vh 3vw;
+
 }
 
 .container {
   margin: 3vh auto;
+  max-height: 75vh;
+  overflow-y: scroll;
 }
-
+.container::-webkit-scrollbar{
+  display: none;
+}
 .plan {
   width: 100%;
   height: auto;

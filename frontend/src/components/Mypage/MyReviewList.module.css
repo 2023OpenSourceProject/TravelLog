@@ -6,6 +6,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 4vw;
+  overflow-y: scroll;
+  max-height: 75vh;
+}
+.container::-webkit-scrollbar{
+  display: none;
 }
 
 .review {

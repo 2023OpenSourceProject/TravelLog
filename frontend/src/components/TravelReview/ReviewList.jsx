@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../UI/Navbar";
+import Footer from "../UI/Footer";
 import styles from "./ReviewList.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -58,6 +59,7 @@ const ReviewList = () => {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };
