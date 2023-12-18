@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MyReview.module.css";
 import Navbar from "../UI/Navbar";
+import PlanDetails from "../TravelReview/PlanDetails";
 import axios from "axios";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import arrowBack from "../../assets/arrow_back.svg";
 
 const MyReview = () => {
   const location = useLocation();
   const reviewId = location.state.reviewId;
   const [review, setReview] = useState([]);
+  const [planId, setPlanId] = useState();
+  const [plan, setPlan] = useState({});
   const [comment, setComment] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [myData, setMyData] = useState();
   const date = new Date(review.createdAt);
   const createdDate = {
     year: date.getFullYear(),
@@ -21,12 +25,14 @@ const MyReview = () => {
 
   const formattedDate = `${createdDate.year}-${createdDate.month}-${createdDate.day}`;
   useEffect(() => {
+    const token = localStorage.getItem("token");
     console.log(reviewId);
     axios
       .get(`https://api.travellog.site:8080/review/${reviewId}`, {})
       .then((response) => {
         setReview(response.data);
         console.log(response.data);
+        setPlanId(response.data.planId);
       })
       .catch((error) => {
         console.error("There was an error!", error);
@@ -41,8 +47,39 @@ const MyReview = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
+
+    axios
+      .get("https://api.travellog.site:8080/user/info", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setMyData(response.data.userId);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
     console.log(comment.content);
   }, []);
+
+  useEffect(() => {
+    // myData 상태가 변경될 때마다 실행
+    console.log(myData);
+    console.log(review.userId);
+  }, [myData]);
+
+  useEffect(() => {
+    axios
+      .get(`https://api.travellog.site:8080/viewplan/${planId}`, {})
+      .then((response) => {
+        setPlan(response.data);
+        console.log(plan);
+      })
+      .catch((error) => {
+        console.log("Error!", error);
+      });
+  }, [planId]);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -69,48 +106,46 @@ const MyReview = () => {
       });
   };
 
-
-
-
   const handleDeleteComment = (commentId) => {
     const token = localStorage.getItem("token");
     axios
-        .post(`https://api.travellog.site:8080/comment/delete/${commentId}`, null,{
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(() => {
-          // 댓글 삭제 후 댓글 리스트를 다시 가져옵니다.
-          axios
-              .get(`https://api.travellog.site:8080/comment/${reviewId}`)
-              .then((response) => {
-                setComment(response.data);
-              })
-              .catch((error) => {
-                console.error("There was an error!", error);
-              });
-        })
-        .catch((error) => {
-          console.error("There was an error!", error);
-        });
+      .post(
+        `https://api.travellog.site:8080/comment/delete/${commentId}`,
+        null,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(() => {
+        // 댓글 삭제 후 댓글 리스트를 다시 가져옵니다.
+        axios
+          .get(`https://api.travellog.site:8080/comment/${reviewId}`)
+          .then((response) => {
+            setComment(response.data);
+          })
+          .catch((error) => {
+            console.error("There was an error!", error);
+          });
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
   };
-
 
   const handleDelete = () => {
     const token = localStorage.getItem("token");
     axios
-        .post(`https://api.travellog.site:8080/review/delete/${reviewId}`, null,{
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(() => {
-          alert("리뷰가 정상적으로 삭제되었습니다!");
-          navigate("/ReviewList");
-        })
-        .catch((error) => {
-          console.error("There was an error!", error);
-        });
+      .post(`https://api.travellog.site:8080/review/delete/${reviewId}`, null, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        alert("리뷰가 정상적으로 삭제되었습니다!");
+        navigate("/ReviewList");
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
   };
-
-
 
   return (
     <>
@@ -119,10 +154,10 @@ const MyReview = () => {
         <div className={styles.container}>
           <div className={styles.header_box}>
             <Link to="/MyPage/MyReview">
-              <img src={arrowBack}/>
+              <img src={arrowBack} />
             </Link>
             <h1 className={styles.header}>Review</h1>
-            <img className={styles.hidden_arrow} src={arrowBack}/>
+            <img className={styles.hidden_arrow} src={arrowBack} />
           </div>
           <h1 className={styles.title}>{review.title}</h1>
           <div className={styles.review_info}>
@@ -136,33 +171,48 @@ const MyReview = () => {
 
           <div className={styles.buttons}>
             <Link
-                to={`/EditReview/${review.reviewId}`}
-                state={{reviewId: review.reviewId}}
-                key={review.reviewId}
-                style={{textDecoration: "none"}}
+              to={`/EditReview/${review.reviewId}`}
+              state={{ reviewId: review.reviewId }}
+              key={review.reviewId}
+              style={{ textDecoration: "none" }}
             >
               <button className={styles.editButton}>리뷰 수정</button>
             </Link>
-            <button className={styles.deleteButton2} onClick={handleDelete}>리뷰 삭제</button>
+            <button className={styles.deleteButton2} onClick={handleDelete}>
+              리뷰 삭제
+            </button>
           </div>
 
-          <img className={styles.image} src={`${review.imgUrl}`}/>
           <p
-              className={styles.content}
-              dangerouslySetInnerHTML={{__html: review.content}}
+            style={{
+              marginLeft: "150px",
+              fontWeight: "bold",
+              fontSize: "20px",
+              fontFamily: "Poppins",
+            }}
+          >
+            여행 계획
+          </p>
+          {/* 내가 만든 계획 일정 출력해주는 부분 */}
+          <PlanDetails plan={plan} />
+
+          <img className={styles.image} src={`${review.imgUrl}`} />
+          <p
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: review.content }}
           ></p>
           <div className={styles.comments}>
             <h2 className={styles.commentsTitle}>댓글</h2>
             <form
-                onSubmit={handleCommentSubmit}
-                className={styles.newCommentForm}
+              onSubmit={handleCommentSubmit}
+              className={styles.newCommentForm}
             >
               <input
-                  type="text"
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                  placeholder="댓글을 입력하세요..."
-                  className={styles.newCommentInput}
+                type="text"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="댓글을 입력하세요..."
+                className={styles.newCommentInput}
               />
               <button type="submit" className={styles.newCommentButton}>
                 댓글 작성
@@ -170,15 +220,21 @@ const MyReview = () => {
             </form>
 
             {comment.map((item) => (
-                <div key={item.commentId} className={styles.comment}>
-                  <p className={styles.commentContent}>{item.content}</p>
-                  <div className={styles.commentMeta}>
-                    <p className={styles.commentDate}>{item.createdAt}</p>
-                    <p className={styles.commentUserName}>{item.userName}</p>
-                  </div>
-                  <button onClick={() => handleDeleteComment(item.commentId)} className={styles.deleteButton}>삭제
-                  </button>
+              <div key={item.commentId} className={styles.comment}>
+                <p className={styles.commentContent}>{item.content}</p>
+                <div className={styles.commentMeta}>
+                  <p className={styles.commentDate}>{item.createdAt}</p>
+                  <p className={styles.commentUserName}>{item.userName}</p>
                 </div>
+                {item.userId === myData && ( // comment의 userId와 myData가 같을 때만 삭제 버튼을 보여줍니다.
+                  <button
+                    onClick={() => handleDeleteComment(item.commentId)}
+                    className={styles.deleteButton}
+                  >
+                    삭제
+                  </button>
+                )}
+              </div>
             ))}
           </div>
         </div>

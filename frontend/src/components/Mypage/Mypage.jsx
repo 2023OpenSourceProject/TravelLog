@@ -5,6 +5,7 @@ import MySideBar from "./MySideBar.jsx";
 import MyPlan from "./MyPlanList.jsx";
 import MyReview from "./MyReviewList.jsx";
 import Setting from "./Setting.jsx";
+import Footer from "../UI/Footer.jsx";
 
 const Mypage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,6 +35,7 @@ const Mypage = () => {
                     </Routes>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

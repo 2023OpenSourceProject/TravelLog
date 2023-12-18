@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 import Navbar from "./UI/Navbar";
+import Footer from "./UI/Footer";
 import mainImage from "../assets/image/mainPageImage.png";
 import styles from "./MainPage.module.css";
 
@@ -48,7 +49,7 @@ const MainPage = () => {
           )}
         </div>
       </div>
-
+      <Footer />
     </>
   );
 };
