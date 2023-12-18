@@ -216,6 +216,7 @@ const ReadReview = () => {
                                 onChange={(e) => setNewComment(e.target.value)}
                                 placeholder="댓글을 입력하세요..."
                                 className={styles.newCommentInput}
+                                required
                             />
                             <button type="submit" className={styles.newCommentButton}>
                                 댓글 작성

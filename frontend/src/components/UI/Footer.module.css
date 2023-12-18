@@ -1,5 +1,46 @@
-.container {
+.body {
   width: 100vw;
-  height: 20vh;
-  background-color: rgb(63, 63, 63);
+  height: 30vh;
+  margin-top: 10vh;
+  background-color: #F5F6F7;
+}
+
+.container{
+  padding-top: 30px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.logoSection {
+  color: #4a5568;
+  justify-content: space-between;
+  text-decoration: none;
+  font-family: 'Caveat';
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+
+}
+.logo{
+  margin-right: 0.5vw;
+  width: auto;
+  height: 1.5vw;
+}
+.githubIcon{
+  width: 40px;
+}
+.teamMember{
+  color: #808080;
+  margin-bottom: 1vh;
+}
+.address{
+  color: #808080;
+}
+.copyRight{
+  margin-top: 12vh;
+  display: flex;
+  color: #808080;
 }
