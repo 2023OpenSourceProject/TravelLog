@@ -68,6 +68,11 @@
   font-style: normal;
   font-weight: 400;
   line-height: 180%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 }
 
 .place_writer {
