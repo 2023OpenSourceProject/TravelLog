@@ -26,7 +26,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 //@EnableMethodSecurity
 public class SecurityConfig {
     private final String[] allowedUrls = {
-            "/user","/login","/user/reset","/review/*","comment/*","/review"
+            "/user","/login","/user/reset","/review/*","comment/*","/review","/viewplan/*"
     }; // 인증 없이 접근 가능한 URL 목록
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;

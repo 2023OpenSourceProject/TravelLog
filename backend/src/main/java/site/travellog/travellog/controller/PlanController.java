@@ -26,7 +26,7 @@ public class PlanController {
         return planList;
     }
 
-    @GetMapping ("/plan/{planid}")
+    @GetMapping ("/viewplan/{planid}")
     public PlanDto getPlan(@PathVariable Long planid) {
         PlanDto plan = planService.getPlan(planid);
         return plan;

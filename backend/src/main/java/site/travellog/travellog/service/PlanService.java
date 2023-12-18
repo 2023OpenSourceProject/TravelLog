@@ -105,17 +105,7 @@ public class PlanService {
 
     // 여행 계획 조회(1개)
     public PlanDto getPlan(Long planId){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        Long userId = Long.parseLong(username);
-
         Plan plan = planRepository.findById(planId).get();
-
-        //만약 유저 본인이 아니면 예외를 처리한다.
-        if(plan.getUser().getId() != userId){
-            throw new IllegalArgumentException("You are not the owner of this plan");
-        }
 
         PlanDto planDto = new PlanDto();
 
