@@ -126,16 +126,14 @@
 
 
 .startButton {
-
   width: 31vw;
   height: 8vh;
 
   justify-content: center;
   align-items: center;
 
-
-  border-radius: 0.5vw;
-  background: #3d63ea;
+  border-radius: 0.7vw;
+  background: #592fff;
 
   /* Btn-Shadow */
 
@@ -144,7 +142,7 @@
   font-family: "Inter", sans-serif;
   font-size: 2vw;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 550;
   opacity: 0;
   animation: fadeIn 0.5s ease-in-out 2.5s forwards;
 }

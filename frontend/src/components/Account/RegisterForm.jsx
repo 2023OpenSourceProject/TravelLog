@@ -1,5 +1,5 @@
 import React from "react";
-import image2 from "../../assets/image/accountImage.png";
+import image2 from "../../assets/image/accountImage2.png";
 import logo from "../../assets/icon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./AccountForm.module.css";
