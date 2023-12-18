@@ -1,0 +1,104 @@
+.body {
+  margin: 3vh 3vw;
+}
+
+.container {
+  margin: 3vh auto;
+}
+
+.plan {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.plan_box {
+  margin: 3vh auto;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease; /* 효과 변경 시간 설정 */
+  transition: background-color 0.3s ease; /* 효과 변경 시간 설정 */
+}
+
+.plan_box:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 변경 */
+  background-color: #e4dcff;
+}
+
+
+.title_view_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create_date {
+  color: #3d3e48;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%;
+}
+
+.image {
+  width: 100%;
+  height: 200px; /* 원하는 높이로 설정 */
+  object-fit: cover;
+}
+
+.plan_title {
+  word-wrap: break-word;
+  color: #000;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+
+  color: #3d3e48;
+  /* Paragraph */
+  font-family: "Poppins";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 28.8px */
+}
+
+.title {
+  margin-bottom: 1vh;
+  color: #3d3e48;
+  font-family: "Poppins";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%; /* 57.6px */
+}
+.notFoundSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+.no_review_message {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+}
