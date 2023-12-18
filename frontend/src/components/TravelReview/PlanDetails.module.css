@@ -1,0 +1,14 @@
+.planDetailSection {
+  background-color: white;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.planDetail {
+  margin-bottom: 2vh;
+
+}
+.planLocationSection{
+  display: flex;
+  gap: 3vw;
+}
