@@ -23,7 +23,6 @@ const ReadReview = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(reviewId);
     const token = localStorage.getItem("token");
     axios
       .get(`https://api.travellog.site:8080/review/${reviewId}`, {})
@@ -51,14 +50,12 @@ const ReadReview = () => {
       .get(`https://api.travellog.site:8080/comment/${reviewId}`, {})
       .then((response) => {
         setComment(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
 
 
-    console.log(comment.content);
   }, []);
 
   const handleCommentSubmit = (e) => {

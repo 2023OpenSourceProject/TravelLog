@@ -13,7 +13,6 @@ const ReviewList = () => {
       .get("https://api.travellog.site:8080/review", {})
       .then((response) => {
         setReviewList(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);

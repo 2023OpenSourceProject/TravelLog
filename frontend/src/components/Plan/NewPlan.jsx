@@ -26,7 +26,6 @@ const NewPlan = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("token : " + token);
     if (!token) {
       navigate("/Login");
     }
@@ -46,7 +45,6 @@ const NewPlan = () => {
   }, [locationList]);
 
   useEffect(() => {
-    console.log(newPlan);
   }, [newPlan]);
 
   const preventClose = (e) => {

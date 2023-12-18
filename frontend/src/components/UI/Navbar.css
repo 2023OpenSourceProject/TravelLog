@@ -1,12 +1,13 @@
 .navbar {
   display: grid;
   align-items: center;
-  background-color: #e9efef;
-  height: 10vh;
+  background-color: #ffffff;
+  height: 9vh;
   font-size: 1.2vw;
   position: sticky;
   top: 0;
   z-index: 999;
+  border-bottom: 0.5px solid #ccc;
 }
 
 .navbar-container {

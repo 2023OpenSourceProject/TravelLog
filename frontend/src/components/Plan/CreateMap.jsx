@@ -54,7 +54,6 @@ const CreateMap = ({
         function successGeo(position) {
           lat = position.coords.latitude;
           lng = position.coords.longitude;
-          console.log(lat, lng);
           const container = document.getElementById("myMap");
           const options = {
             center: new kakao.maps.LatLng(lat, lng),
@@ -110,7 +109,6 @@ const CreateMap = ({
 
         // 검색 결과를 places 상태에 저장
         setPlaces(data);
-        console.log(data);
       }
       // 검색 결과가 없을 경우 리스트 초기화해주고 중심좌표를 현재 위치로
       else if (status === kakao.maps.services.Status.ZERO_RESULT) {
