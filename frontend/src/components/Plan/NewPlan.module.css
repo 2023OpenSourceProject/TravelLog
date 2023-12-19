@@ -119,4 +119,10 @@
 
 .addBtn {
   margin-right: 1vw;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  opacity: 1;
+
 }
