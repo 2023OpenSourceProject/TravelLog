@@ -56,3 +56,7 @@
   font-weight: 700;
   line-height: 180%; /* 57.6px */
 }
+
+.button:hover {
+  background-color: #3d1cbe;
+}

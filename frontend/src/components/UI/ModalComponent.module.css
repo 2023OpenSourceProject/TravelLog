@@ -87,6 +87,12 @@ input:valid ~ span {
   font-weight: 600;
   line-height: normal;
 }
+
+.btn:hover {
+  background: #7267e1;
+  color: #fff;
+}
+
 .modalContents {
   display: flex;
   justify-content: center;
