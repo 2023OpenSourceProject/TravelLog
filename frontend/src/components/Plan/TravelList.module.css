@@ -131,3 +131,10 @@
   transform: translateX(0);
   transition: opacity 500ms, transform 500ms;
 }
+
+.initPlace{
+  color: #ff0000;
+  cursor: pointer;
+  margin-top: 13px;
+  margin-left: 10px;
+}
