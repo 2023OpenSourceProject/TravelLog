@@ -34,6 +34,11 @@
   height:20px;
 }
 
+.editIcon:hover{
+  cursor: pointer;
+}
+
+
 .planName{
   display: flex;
   font-size: 1.5rem;
@@ -57,7 +62,7 @@
   text-align: center;
   width: 60vw;
   justify-content: start;
-
+  cursor: pointer;
   overflow-x: scroll;
 
 }

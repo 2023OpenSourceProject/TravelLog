@@ -103,6 +103,10 @@
   opacity: 50%;
   margin-right: 10px;
 }
+.searchIcon:hover{
+  cursor: pointer;
+  opacity: 100%;
+}
 
 .noResultSection {
   display: flex;
