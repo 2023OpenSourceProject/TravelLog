@@ -13,25 +13,40 @@
 여행 후기를 확인하기 위해 블로그 사이트를 돌아다니며 계획을 세우시나요?<br>
 이제 계획과 후기를 한번에 확인할 수 있는 Travel Log를 이용하세요!
 ## 🖥 서비스 화면
-<img width="1665" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/8702d79e-8936-49c8-94dd-1c5599bfe6d6">
+### 플랜 작성
+<img width="1466" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/290aa0d5-8330-4f3f-bc88-2109a45704ef">
+
+### 리뷰 작성
+<img width="1364" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/e005a75f-1f68-4ca7-bcdc-d36f26bac820">
+
+### 리뷰 보기
+<img width="1332" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/b2510c0c-a4cb-4037-a977-9e8e6d370ec2">
+
 
 ## 🛠 기술 스택
 
 ### Front-end
 
-<img width="1006" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/9d5a8ba5-284c-4e5f-8158-9a8a8fcd544d">
+<img width="877" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/0f468142-c61c-44c4-a3c9-550ff3fff105">
 
+### Cooperation Tools
+<img width="878" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/03051169-1ce5-4137-a7bd-73b6a76c0c74">
 
 
 ### Back-end
 
-<img width="830" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/56e8a96a-afdd-441d-b09d-5e22b7c4512a">
+<img width="876" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/7eb6c211-2177-471b-9e37-8b5a4e8c88c7">
+
+### Deploy
+<img width="876" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/f3a56c4d-3869-43d7-a88b-868690abe3bb">
+
 
 
 
 
 ## ⚙️ 아키텍처
-<img width="565" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/2bd66c99-f28a-422c-b1ad-5e26665392de">
+<img width="1239" alt="image" src="https://github.com/2023OpenSourceProject/project/assets/99214190/46d2165b-36fa-4661-aa9d-64ef11a79363">
+
 
 ## 멤버
 |                   Backend                    |                      Frontend                       |                     Frontend                      |
