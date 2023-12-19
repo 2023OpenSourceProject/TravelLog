@@ -1,4 +1,4 @@
-.travelList{
+.travelList {
   color: #000;
   min-height: 740px;
   max-height: 740px;
@@ -9,40 +9,99 @@
   font-family: "Inter", sans-serif;
   justify-content: center;
   overflow-y: auto;
-  margin-right: 1vw;
+  margin: 1vh;
 }
 .travelList::-webkit-scrollbar {
   display: none;
 }
-.listIcon{
+.listIcon {
   margin: 0;
   margin-left: 10px;
   margin-right: 10px;
   position: relative;
-  width:20px;
-  height:20px;
+  width: 2vw;
+  height: 2vw;
 }
 
-
-.travelLocations{
-  margin-top: 10px;
+.locationBoxSection {
   display: grid;
-  grid-template-columns: 40px auto 32px;
+  grid-template-columns: 1fr 10fr 1fr;
   align-items: center;
-  margin-bottom: 15px;
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 5px;
 }
 
-.locationName{
+.travelLocations {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.locationTextSection{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.locationName {
   text-align: left;
   font-size: 18px;
+  font-weight: bold;
+  max-width: 15vw;
+  overflow-x: scroll;
 
+  white-space: nowrap;
+}
+.locationName::-webkit-scrollbar{
+  display: none;
 }
 
-.travelLocations > .deleteIcon{
-  justify-content: end;
-  margin: 0;
-  width:28px;
-  height:24px;
+.locationCategory {
+  text-align: left;
+  font-size: 14px;
+  color: #2F82FF;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.locationCategory::-webkit-scrollbar{
+  display: none;
+}
+
+.numberSection {
+  text-align: center;
+  cursor: auto;
+  font-weight: bold;
+  font-size: 1vw;
+  color: #ffffff;
+  background-color: #5683F5;
+  border: none;
+  width: 1.7vw;
+  height: 1.7vw;
+  border-radius: 100%;
+  margin-right: 10px;
+  
+}
+
+.delBtnSection {
+  margin-left: 1vh;
+}
+
+.deleteIcon {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #adadad;
+
+  color: #fff;
+  font-family: "Inter";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .noLocations {
@@ -63,4 +122,3 @@
   transform: translateX(0);
   transition: opacity 500ms, transform 500ms;
 }
-
