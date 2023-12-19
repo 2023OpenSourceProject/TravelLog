@@ -28,6 +28,7 @@
 
 
 .review_box {
+  margin: 5px;
   border-radius: 10px;
   padding: 10px;
   overflow: hidden;
@@ -39,7 +40,8 @@
 }
 
 .review_box:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 변경 */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 변경 */
   background-color: #e4dcff;
 }
 
@@ -57,6 +59,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 180%;
+
 }
 
 .image {
@@ -69,9 +72,10 @@
   word-wrap: break-word;
   color: #000;
   font-family: "Poppins";
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 20px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 180%;
 }
 
@@ -92,6 +96,7 @@
   margin-bottom: 1vh;
   color: #3d3e48;
   font-family: "Poppins";
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 48px;
   font-style: normal;
   font-weight: 800;

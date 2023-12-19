@@ -13,8 +13,9 @@
     width: 200px;
     display: flex;
     flex-direction: column;
-    font-weight: bold;
+    font-weight: bolder;
     font-size: 25px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .link {

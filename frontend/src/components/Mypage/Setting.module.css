@@ -14,10 +14,12 @@
 }
 
 .input {
+  font-family: 'Nanum Gothic', sans-serif;
   width: 100%;
   padding: 10px;
   margin-top: 5px;
   border: 2px solid #592fff;
+  
   border-radius: 5px;
 
 }
@@ -25,6 +27,7 @@
 .name {
   font-family: "Poppins";
   font-size: 25px;
+  font-weight: 600;
 }
 
 .form {
@@ -51,9 +54,10 @@
 
   text-align: center;
   font-family: "Poppins";
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 32px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 180%; /* 57.6px */
 }
 

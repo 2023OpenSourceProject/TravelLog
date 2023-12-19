@@ -1,12 +1,12 @@
 .travelList {
   color: #000;
-  min-height: 740px;
-  max-height: 740px;
+  min-height: 720px;
+  max-height: 720px;
   font-size: 24px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
-  font-family: "Inter", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   justify-content: center;
   overflow-y: auto;
   margin: 1vh;
@@ -35,9 +35,17 @@
 
 .travelLocations {
   margin-top: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  border-radius: 15px;
+  transition: 0.3s ease;
+}
+.travelLocations:hover{
+  border-radius: 13px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 변경 */
 }
 
 .locationTextSection{
@@ -50,7 +58,7 @@
   text-align: left;
   font-size: 18px;
   font-weight: bold;
-  max-width: 15vw;
+  max-width: 18vw;
   overflow-x: scroll;
 
   white-space: nowrap;
@@ -62,6 +70,7 @@
 .locationCategory {
   text-align: left;
   font-size: 14px;
+  max-width: 18vw;
   color: #2F82FF;
   overflow-x: scroll;
   white-space: nowrap;

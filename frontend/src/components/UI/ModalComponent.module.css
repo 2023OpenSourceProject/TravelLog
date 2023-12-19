@@ -11,8 +11,9 @@
   text-align: center;
   font-size: 36px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: bolder;
   line-height: normal;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .inputName {
@@ -35,6 +36,8 @@
   position: relative;
   background: none;
   z-index: 1;
+  font-family: 'Nanum Gothic', sans-serif;
+
 }
 .modalPlanName::placeholder {
   color: #aaaaaa;
@@ -86,6 +89,7 @@ input:valid ~ span {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  transition: 0.5s ease;
 }
 
 .btn:hover {
@@ -110,6 +114,7 @@ input:valid ~ span {
   margin-bottom: 30px;
   text-decoration: underline;
   color: #2e2e2e;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 .exampleCustomInput {
   font-size: 24px;
@@ -117,3 +122,9 @@ input:valid ~ span {
   font-family: "Poppins", sans-serif;
 }
 
+.dateBetween {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}

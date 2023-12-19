@@ -8,14 +8,14 @@ const MyPlanMap = ({ planId, selectedDay }) => {
   const linesRef = useRef(null);
 
   useEffect(() => {
+    if (linesRef.current) {
+      linesRef.current.setMap(null); // 선을 지우는 부분
+    }
     markersRef.current.forEach(({ marker, overlay }) => {
       marker.setMap(null);
       overlay.setMap(null);
     });
 
-    if (linesRef.current) {
-      linesRef.current.setMap(null); // 선을 지우는 부분
-    }
 
     markersRef.current = [];
     const positions = []; // 마커의 위치를 저장할 배열
@@ -76,6 +76,9 @@ const MyPlanMap = ({ planId, selectedDay }) => {
           displayMarker(locPosition, place.name, place.seq);
         });
         if(markersRef.current.length > 1) {
+          if (linesRef.current) {
+            linesRef.current.setMap(null); // 선을 지우는 부분
+          }
           // 모든 마커가 생성된 후에 선을 그립니다.
           linesRef.current = new kakao.maps.Polyline({
             map: mapRef.current,
@@ -87,7 +90,9 @@ const MyPlanMap = ({ planId, selectedDay }) => {
           });
 
         } else {
-          linesRef.current.setMap(null); // 선을 지우는 부분
+          if (linesRef.current) {
+            linesRef.current.setMap(null); // 선을 지우는 부분
+          }
         }
 
       })

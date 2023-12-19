@@ -8,7 +8,12 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
   console.log(locationList);
 
   const resetLocationsHandler = () => {
-    setLocationList([]);
+    if(confirm("초기화 하시겠습니까?")){
+      setLocationList([]);
+    } else {
+      return
+    }
+
   }
 
   const removePlaceHandler = (indexToRemove) => {
@@ -64,7 +69,7 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
           locationList
             .filter((item) => item.day === selectedDay)
             .map((item, index) => (
-              <li className={styles.travelLocations} key={index}>
+              <li className={styles.travelLocations} key={index} >
                 <div className={styles.locationBoxSection}>
                   <button className={styles.numberSection}>{index+1}</button>
                   <div className={styles.locationTextSection}>
@@ -92,7 +97,7 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
         ) : (
           <div className={styles.noLocations}>
             <img style={{ width: "15vw" }} src={noResult} alt="noResult" />
-            <div>추가한 여행지가 없습니다</div>
+            <div className={styles.noLocationText}>추가한 여행지가 없습니다</div>
           </div>
         )}
       </ul>

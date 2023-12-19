@@ -31,7 +31,8 @@
 .title {
   color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 60px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 50px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -59,6 +60,7 @@
   color: #706c6c;
 
   font-family: "Poppins", sans-serif;
+  
   font-size: 28px;
   font-style: normal;
   font-weight: 600;
@@ -80,32 +82,39 @@
   margin: 20px auto;
   color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 32px;
+  
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: 45px; /* 140.625% */
   word-wrap: break-word;
+  min-height: 30vh;
 }
 
 .comments {
+  font-family: 'Nanum Gothic', sans-serif;
   width: 900px;
   margin: 20px auto;
   padding: 20px;
   border-top: 1px solid #bababa;
+  min-height: 40vh;
 }
 
 .comment {
+  font-family: 'Nanum Gothic', sans-serif;
   padding: 10px 0;
   border-bottom: 1px solid #bababa;
   position: relative;
 }
 
 .commentContent {
+
   color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 24px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 32px;
   word-wrap: break-word;
 }
@@ -113,7 +122,7 @@
 .commentDate {
   color: #706c6c;
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-style: italic;
   font-weight: 300;
   line-height: 24px;
@@ -123,7 +132,8 @@
 .commentsTitle {
   color: #000;
   font-family: "Poppins", sans-serif;
-  font-size: 32px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 30px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -133,11 +143,13 @@
 
 .newCommentForm {
   display: flex;
+  font-family: 'Nanum Gothic', sans-serif;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .newCommentInput {
+  font-family: 'Nanum Gothic', sans-serif;
   flex: 1;
   padding: 10px;
   border: 1px solid #ddd;
@@ -147,6 +159,7 @@
 }
 
 .newCommentButton {
+  font-family: 'Nanum Gothic', sans-serif;
   margin-left: 10px;
   padding: 10px 20px;
   border: none;
@@ -163,6 +176,7 @@
 }
 
 .deleteButton {
+  font-family: 'Nanum Gothic', sans-serif;
   position: absolute;
   right: 0;
   top: 50%;  /* 부모 요소의 중간에 위치 */
@@ -170,25 +184,28 @@
   background-color: #ff6347; /* 버튼 색상 */
   color: white; /* 글자 색상 */
   border: none; /* 테두리 없애기 */
-  padding: 5px 10px; /* 상하, 좌우 패딩 */
+  padding: 6px 10px; /* 상하, 좌우 패딩 */
   cursor: pointer; /* 마우스 커서를 손가락 모양으로 */
   border-radius: 5px; /* 버튼 모서리 둥글게 */
 }
 
 .commentUserName {
   font-weight: bold;
+  font-family: 'Nanum Gothic', sans-serif;
   color: #1e1e1e;
   font-size: 16px; /* 글자 크기를 조금 키움 */
-  margin-top: 5px; /* 상단 마진을 조금 줄임 */
+  margin-top: 3px; /* 상단 마진을 조금 줄임 */
 }
 
 .commentMeta {
   display: flex;
-
   width: 100%;
 }
 
 .deleteButton2 {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
+  border-radius: 0.7vw;
   width: 100px;   /* 버튼 너비 지정 */
   height: 50px;  /* 버튼 높이 지정 */
   background-color: #f44336; /* 버튼 배경색 지정 */
@@ -196,9 +213,13 @@
   border: none;  /* 테두리 제거 */
   cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
 
-  font-size: 16px; /* 글자 크기 지정 */
+  font-size: 18px; /* 글자 크기 지정 */
 }
 .deleteButton:hover {
+  background-color: #da190b; /* 마우스 오버시 버튼 배경색 변경 */
+}
+
+.deleteButton2:hover {
   background-color: #da190b; /* 마우스 오버시 버튼 배경색 변경 */
 }
 
@@ -211,13 +232,16 @@
 }
 
 .editButton {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
+  border-radius: 0.7vw;
   width: 100px;   /* 버튼 너비 지정 */
   height: 50px;  /* 버튼 높이 지정 */
   background-color: #4caf50; /* 버튼 배경색 지정 */
   color: white;  /* 글자색 지정 */
   border: none;  /* 테두리 제거 */
   cursor: pointer; /* 마우스 커서를 손가락 모양으로 변경 */
-  font-size: 16px; /* 글자 크기 지정 */
+  font-size: 18px; /* 글자 크기 지정 */
   margin-right: 10px; /* 오른쪽 마진 추가 */
 }
 
@@ -225,6 +249,10 @@
   background-color: #45a049; /* 마우스 오버시 버튼 배경색 변경 */
 }
 
-.deleteButton2:hover {
-  background-color: #da190b; /* 마우스 오버시 버튼 배경색 변경 */
+.planSection{
+  font-family: 'Nanum Gothic', sans-serif;
+  margin-left: 150px;
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 13px;
 }

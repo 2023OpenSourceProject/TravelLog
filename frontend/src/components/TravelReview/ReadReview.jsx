@@ -193,7 +193,7 @@ const ReadReview = () => {
                         </div>
                     )}
 
-                    <p style={{marginLeft:"150px", fontWeight:"bold", fontSize:"20px", fontFamily: "Poppins"}}>여행 계획</p>
+                    <p className={styles.planSection}>여행 계획</p>
                     {/* 내가 만든 계획 일정 출력해주는 부분 */}
                     <PlanDetails plan={plan}/>
 
