@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import Navbar from "../UI/Navbar.jsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import MySideBar from "./MySideBar.jsx";
-import MyPlan from "./MyPlanList.jsx";
-import MyReview from "./MyReviewList.jsx";
+import MyPlanList from "./MyPlanList.jsx";
+import MyReviewList from "./MyReviewList.jsx";
 import Setting from "./Setting.jsx";
 import Footer from "../UI/Footer.jsx";
 
@@ -28,14 +28,14 @@ const Mypage = () => {
                 <MySideBar />
                 <div style={{ flex: 1 }}>
                     <Routes>
-                        <Route path="/" element={<MyPlan />} />
-                        <Route path="MyPlan" element={<MyPlan />} />
-                        <Route path="MyReview" element={<MyReview />} />
+                        <Route path="/" element={<MyPlanList />} />
+                        <Route path="MyPlan" element={<MyPlanList />} />
+                        <Route path="MyReview" element={<MyReviewList />} />
                         <Route path="Setting" element={<Setting />} />
                     </Routes>
                 </div>
             </div>
-            <Footer />
+            <Footer />  
         </>
     );
 };
