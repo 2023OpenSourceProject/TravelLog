@@ -145,7 +145,7 @@ const ModalComponent = ({
                 zIndex="999"
                 customInput={<ExampleCustomInput />}
               />
-              <p style={{marginLeft:"20px", marginRight:"20px", fontWeight:"bold"}}>-</p>
+              <p className={styles.dateBetween} style={{marginLeft:"20px", marginRight:"20px", fontWeight:"bold"}}>-</p>
               <DatePicker
                 selected={modalEndDate}
                 onChange={(date) => setModalEndDate(date)}

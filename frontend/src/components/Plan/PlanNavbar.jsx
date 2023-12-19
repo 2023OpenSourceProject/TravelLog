@@ -14,6 +14,14 @@ const PlanNavbar = (props) => {
     props.setModalOpen(true);
   };
 
+  const cancleHandler = () => {
+    if (confirm("취소하시겠습니까?")) {
+      navigate("/");
+    } else {
+      return
+    }
+  }
+
   const savePlanHandler = (event) => {
     event.preventDefault();
 
@@ -86,9 +94,7 @@ const PlanNavbar = (props) => {
 
 
         <div className={styles.btns}>
-          <Link to="/">
-            <button className={styles.cancleBtn}>취소</button>
-          </Link>
+          <button onClick={cancleHandler} className={styles.cancleBtn}>취소</button>
           <form onSubmit={savePlanHandler}>
             <button type="submit" className={styles.saveBtn}>
               저장

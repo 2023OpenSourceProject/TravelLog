@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 4vw;
+  min-height: 65vh;
 }
 
 .review {
@@ -64,9 +65,10 @@
   word-wrap: break-word;
   color: #000;
   font-family: "Poppins";
-  font-size: 20px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 180%;
   display: block;
   white-space: nowrap;
@@ -82,6 +84,7 @@
   color: #3d3e48;
   /* Paragraph */
   font-family: "Poppins";
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

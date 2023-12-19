@@ -46,8 +46,8 @@ const MyPlanNavbar = ({plan, dateDiff, selectedDay, setSelectedDay}) => {
           </ul>
         </div>
         <div className={styles.btns}>
-          <Link to="/">
-            <button className={styles.cancleBtn}>뒤로가기</button>
+          <Link to="/MyPage/MyPlan">
+            <button className={styles.cancleBtn}>돌아가기</button>
           </Link>
         </div>
       </div>

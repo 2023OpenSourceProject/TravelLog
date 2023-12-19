@@ -1,5 +1,4 @@
 
-
 .container {
   display: flex;
   justify-content: start;
@@ -28,6 +27,7 @@
 
 .mainBody{
   margin-left: 14vw;
+
 }
 
 .typewriter1, .typewriter2 {
@@ -90,7 +90,7 @@
   color: var(--gray-gray-700, #4a5568);
   /* Paragraphs/default-lg */
   text-align: left;
-  font-family: "Inter", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 1.1vw;
   font-style: normal;
   font-weight: bold;
@@ -133,13 +133,14 @@
   align-items: center;
 
   border-radius: 0.7vw;
+  border: none;
   background: #592fff;
 
   /* Btn-Shadow */
 
 
   color: var(--gray-gray-50, #fafafa);
-  font-family: "Inter", sans-serif;
+  font-family: 'Black Han Sans', sans-serif;
   font-size: 2vw;
   font-style: normal;
   font-weight: 550;

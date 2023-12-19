@@ -1,6 +1,6 @@
 .header{
   display: grid;
-  grid-template-columns: 300px auto 12vw;
+  grid-template-columns: 360px auto 12vw;
   background-color: #e9efef;
   height: 80px;
   align-items: center;
@@ -41,14 +41,19 @@
 
 .planName{
   display: flex;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
   overflow: auto;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 .planName::-webkit-scrollbar {
   display: none;
 }
 
 .date{
+  margin-top: 4px;
   color: #999;
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
@@ -62,7 +67,7 @@
   text-align: center;
   width: 60vw;
   justify-content: start;
-  cursor: pointer;
+
   overflow-x: scroll;
 
 }
@@ -76,7 +81,7 @@
   font-weight: bold;
   line-height: 80px;
   width: 100px;
-
+  cursor: pointer;
 }
 
 .day:hover{
@@ -111,6 +116,7 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+  transition: 0.5s ease;
 }
 
 
@@ -135,7 +141,7 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-
+  transition: 0.5s ease;
 }
 
 .saveBtn:hover {

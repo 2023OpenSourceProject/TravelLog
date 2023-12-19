@@ -1,15 +1,17 @@
 .travelList {
   color: #000;
-  min-height: 740px;
-  max-height: 740px;
+  min-height: 690px;
+  max-height: 690px;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   font-family: "Inter", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   justify-content: center;
   overflow-y: auto;
   margin: 1vh;
+
 }
 .travelList::-webkit-scrollbar {
   display: none;
@@ -36,13 +38,19 @@
   border-radius: 15px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 5px;
+  transition: 0.3s ease;
 }
-
+.locationBoxSection:hover{
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 변경 */
+}
 .travelLocations {
   margin-top: 10px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  border-radius: 15px;
+
 }
 
 .locationTextSection{
@@ -55,7 +63,7 @@
   text-align: left;
   font-size: 18px;
   font-weight: bold;
-  max-width: 15vw;
+  max-width: 13vw;
   overflow-x: scroll;
 
   white-space: nowrap;
@@ -68,6 +76,7 @@
   text-align: left;
   font-size: 14px;
   color: #2F82FF;
+  max-width: 13vw;
   overflow-x: scroll;
   white-space: nowrap;
 }
@@ -133,8 +142,20 @@
 }
 
 .initPlace{
+
+  font-family: 'Nanum Gothic', sans-serif;
+  text-align: center;
   cursor: pointer;
   color: red;
-  margin-left: 10px;
+  font-size: 13px;
+  margin-left: 280px;
   margin-top: 15px;
+  transition: 0.5s ease;
+}
+.initPlace:hover{
+  color: #ff6060;
+}
+.noLocationText {
+  font-size: 18px;
+
 }

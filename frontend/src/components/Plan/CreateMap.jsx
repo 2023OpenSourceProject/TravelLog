@@ -3,7 +3,9 @@ import styles from "./NewPlan.module.css";
 import searchIcon from "../../assets/searchIcon.png";
 import notFound from "../../assets/image/notFound.svg";
 import addBtn from "../../assets/addBtn.svg";
+import defaultIcon from "../../assets/travelLog.png";
 
+import "../../components/UI/Overlay.css";
 const CreateMap = ({
   selectedDay,
   setLocationList,
@@ -11,7 +13,8 @@ const CreateMap = ({
   locationList,
 }) => {
   let lat, lng;
-  let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+  let currentOverlay = null; // 현재 켜진 오버레이를 추적하는 변수
+  let currentOverlayIndex = null; // 현재 켜진 오버레이의 인덱스를 추적하는 변수
   let markerSource =
     "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
 
@@ -21,6 +24,7 @@ const CreateMap = ({
   // inputText는 입력 필드의 현재 값을 추적, searchPlace는 검색할 장소를 저장
   const [inputText, setInputText] = useState("");
   const [searchPlace, setSearchPlace] = useState("");
+
   // 입력 필드에서 발생하는 이벤트를 처리하는 함수
   const onChange = (event) => {
     setInputText(event.target.value);
@@ -35,13 +39,14 @@ const CreateMap = ({
 
   const clearMarkers = () => {
     for (let i = 0; i < mapRef.current.markers.length; i++) {
-      mapRef.current.markers[i].setMap(null);
+      mapRef.current.markers[i].marker.setMap(null); // 마커의 setMap 호출
+      mapRef.current.markers[i].overlay.setMap(null); // 오버레이의 setMap 호출
     }
     mapRef.current.markers = [];
   };
 
   useEffect(() => {
-    if(navigator.geolocation) {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successGeo, failGeo);
 
       function successGeo(position) {
@@ -89,6 +94,7 @@ const CreateMap = ({
 
     function placesSearchCB(data, status, pagination) {
       if (status === kakao.maps.services.Status.OK) {
+        clearMarkers();
         let bounds = new kakao.maps.LatLngBounds();
 
         for (let i = 0; i < data.length; i++) {
@@ -133,6 +139,7 @@ const CreateMap = ({
   }, [searchPlace]);
 
   function displayMarker(place, index) {
+    console.log(place);
     let imageSrc = `${markerSource}`, // 마커 이미지 url, 스프라이트 이미지를 씁니다
       imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
       imgOptions = {
@@ -146,23 +153,55 @@ const CreateMap = ({
         position: new kakao.maps.LatLng(place.y, place.x),
         image: markerImage,
       });
+    const overlayContent = `<div class="wrap">
+        <div class="info">
+          <div class="title">
+            ${place.place_name}
+            <div class="close" title="닫기" onClick="closeOverlay(${index})" }></div>
+          </div>
+          <div class="body">
+            <div class="img"><img src=${defaultIcon} width="73" height="70"></div>
+            <div class="desc">
+              <div class="jibun ellipsis">${place.address_name}</div>
+              <div class="jibun ellipsis">${place.phone}</div> 
+              <div><a href=${place.place_url} target="_blank">검색 결과 페이지</a></div>
+            </div>
+          </div>
+        </div>
+      </div>`;
 
-    kakao.maps.event.addListener(marker, "mouseover", function () {
-      infowindow.setContent(
-        '<div style="padding:5px; font-size:12px;">' +
-          place.place_name +
-          "</div>"
-      );
-      infowindow.open(mapRef.current, marker);
+    let overlay = new kakao.maps.CustomOverlay({
+      content: overlayContent,
+      map: null,
+      position: marker.getPosition(),
+      zIndex: 1,
     });
-
-    kakao.maps.event.addListener(marker, "mouseout", function () {
-      infowindow.close();
+    kakao.maps.event.addListener(marker, "click", function () {
+      const moveLatLon = new kakao.maps.LatLng(place.y, place.x);
+      mapRef.current.panTo(moveLatLon);
+      if (currentOverlay && currentOverlayIndex !== index) {
+        currentOverlay.setMap(null); // 이전에 켜진 오버레이가 있다면 끈다.
+      }
+      if (currentOverlayIndex === index) {
+        // 이미 열려있는 오버레이를 클릭한 경우
+        currentOverlay = null;
+        currentOverlayIndex = null;
+      } else {
+        overlay.setMap(mapRef.current); // 새 오버레이를 켠다.
+        currentOverlay = overlay; // 새 오버레이를 현재 오버레이로 설정한다.
+        currentOverlayIndex = index; // 새 오버레이의 인덱스를 현재 오버레이 인덱스로 설정한다.
+      }
     });
-
-    mapRef.current.markers.push(marker);
+    mapRef.current.markers.push({ marker, overlay });
   }
-
+  window.closeOverlay = function (index) {
+    mapRef.current.markers[index].overlay.setMap(null);
+    if (currentOverlayIndex === index) {
+      // 닫힌 오버레이가 현재 오버레이라면
+      currentOverlay = null; // 현재 오버레이를 null로 설정
+      currentOverlayIndex = null; // 현재 오버레이 인덱스를 null로 설정
+    }
+  };
   const addLocationHandler = (place, day) => {
     // 이미 추가된 장소인지 확인
     const isPlaceAlreadyAdded = locationList.some(
@@ -170,9 +209,20 @@ const CreateMap = ({
     );
 
     if (isPlaceAlreadyAdded) {
-      alert("이미 추가된 장소입니다.");
+      // 이미 추가된 장소라면 locationList에서 해당 장소 제거
+      setLocationList((prevState) =>
+        prevState.filter(
+          (item) => item.name !== place.place_name || item.day !== day
+        )
+      );
+
+      // 이미 추가된 장소라면 addedPlaces에서 해당 장소 제거
+      setAddedPlaces((prevAddedPlaces) =>
+        prevAddedPlaces.filter((placeName) => placeName !== place.place_name)
+      );
       return;
     }
+
     setLocationList((prevState) => {
       const newLocationList = [...prevState];
       const newPlace = {
@@ -193,6 +243,7 @@ const CreateMap = ({
     setNewPlan((prevState) => {
       return { ...prevState, plan_details: locationList };
     });
+    setAddedPlaces((prevAddedPlaces) => [...prevAddedPlaces, place.place_name]);
   };
 
   // 검색 창과 결과 리스트, 지도를 표시하는 렌더링 부분
@@ -214,46 +265,55 @@ const CreateMap = ({
             type="submit"
           ></img>
         </form>
-        {places.length > 0 ? (
-          places.map((item, i) => (
-            <div className={styles.searchResult} key={i}>
-              <div className={styles.searchItem}>
+        <div className={styles.searchResultSection}>
+          {places.length > 0 ? (
+            places.map((item, i) => (
+              <div className={styles.searchResult} key={i}>
                 <div
-                  className={styles.markerNumber}
-                  style={{
-                    backgroundImage: `url(${markerSource})`,
-                    backgroundPosition: `0px ${-i * 46}px`, // 마커 이미지의 위치를 조정합니다.
-                    width: "36px", // 이미지 요소의 너비를 조정합니다.
-                    height: "46px", // 이미지 요소의 높이를 조정합니다.
+                  className={styles.searchItem}
+                  onClick={() => {
+                    // 지도의 중심을 클릭한 장소의 좌표로 이동
+                    const moveLatLon = new kakao.maps.LatLng(item.y, item.x);
+                    mapRef.current.panTo(moveLatLon);
                   }}
-                ></div>
-                <div className={styles.locationInfo}>
-                  <h5>{item.place_name}</h5>
-                  <p className={styles.locationCategory}>
-                    {item.category_name}
-                  </p>
-                  <span className={styles.locationAddress}>
-                    {item.address_name}
-                  </span>
+                >
+                  <div
+                    className={styles.markerNumber}
+                    style={{
+                      backgroundImage: `url(${markerSource})`,
+                      backgroundPosition: `0px ${-i * 46}px`, // 마커 이미지의 위치를 조정합니다.
+                      width: "36px", // 이미지 요소의 너비를 조정합니다.
+                      height: "46px", // 이미지 요소의 높이를 조정합니다.
+                    }}
+                  ></div>
+                  <div className={styles.locationInfo}>
+                    <h5 style={{ marginTop: "5px" }}>{item.place_name}</h5>
+                    <p className={styles.locationCategory}>
+                      {item.category_name}
+                    </p>
+                    <p className={styles.locationAddress}>
+                      {item.address_name}
+                    </p>
 
-                  <div className={styles.locationPhone}>{item.phone}</div>
+                    <div className={styles.locationPhone}>{item.phone}</div>
+                  </div>
                 </div>
+                <img
+                  className={styles.addBtn}
+                  src={addBtn}
+                  alt="addBtn"
+                  onClick={() => addLocationHandler(item, selectedDay)}
+                />
               </div>
-              <img
-                className={styles.addBtn}
-                src={addBtn}
-                alt="addBtn"
-                onClick={() => addLocationHandler(item, selectedDay)}
-              />
+            ))
+          ) : (
+            <div className={styles.noResultSection}>
+              <img style={{ width: "10vw" }} src={notFound} alt="notFound" />
+              <div>검색 결과가 없습니다</div>
+              <div>다른 키워드로 검색해보세요!</div>
             </div>
-          ))
-        ) : (
-          <div className={styles.noResultSection}>
-            <img style={{ width: "10vw" }} src={notFound} alt="notFound" />
-            <div>검색 결과가 없습니다</div>
-            <div>다른 키워드로 검색해보세요!</div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <div // 지도를 표시할 Container

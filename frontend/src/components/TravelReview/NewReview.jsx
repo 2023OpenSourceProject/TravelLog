@@ -67,8 +67,19 @@ const NewReview = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-  }, []);
 
+      (() => {
+        window.addEventListener("beforeunload", preventClose);
+      })();
+      return () => {
+        window.removeEventListener("beforeunload", preventClose);
+      };
+  }, []);
+  
+  const preventClose = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
   // 리뷰 등록 핸들러
   const handleSubmit = async () => {
     if (!selectedImage) {
