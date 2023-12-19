@@ -1,102 +1,61 @@
-import { useEffect, useState } from "react";
-import ModalComponent from "../UI/ModalComponent";
-import CreateMap from "../Plan/CreateMap";
-import TravelList from "./TravelList";
-import styles from "./NewPlan.module.css";
-import PlanNavbar from "./PlanNavbar";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import styles from "./MyPlan.module.css";
+import React, { useState, useEffect } from "react";
+import MyPlanNavbar from "./MyPlanNavbar";
+import MyTravelList from "./MyTravelList";
+import MyPlanMap from "./MyPlanMap";
 
-const NewPlan = () => {
-  const [planName, setPlanName] = useState("Plan Name");
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
-  const [dateDiff, setDateDiff] = useState(1);
+const MyPlan = () => {
+  const location = useLocation();
+  const planId = location.state.plan_id;
+  const [plan, setPlan] = useState([]);
   const [selectedDay, setSelectedDay] = useState(1);
-  const [locationList, setLocationList] = useState([]);
-  const [modalOpen, setModalOpen] = useState(true);
+  const [dateDiff, setDateDiff] = useState(1);
+  let copiedPlan = [];
 
-  const [newPlan, setNewPlan] = useState({
-    title: planName,
-    start_date: startDate,
-    end_date: endDate,
-    plan_details: [],
-  });
+  const getDiff = (Start, End) => {
+    const startDate = new Date(Start);
+    const endDate = new Date(End);
 
-  const navigate = useNavigate();
+    const diff = endDate.getTime() - startDate.getTime();
+
+    return Math.abs(diff / (1000 * 60 * 60 * 24)) + 1;
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/Login");
-    }
-
-    (() => {
-      window.addEventListener("beforeunload", preventClose);
-    })();
-    return () => {
-      window.removeEventListener("beforeunload", preventClose);
-    };
+    axios
+      .get(`https://api.travellog.site:8080/viewplan/${planId}`, {})
+      .then((response) => {
+        setPlan(response.data);
+        setDateDiff(getDiff(response.data.start_date, response.data.end_date));
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
   }, []);
 
-  useEffect(() => {
-    setNewPlan(prevState => {
-      return {...prevState, plan_details: locationList};
-    });
-  }, [locationList]);
-
-  useEffect(() => {
-  }, [newPlan]);
-
-  const preventClose = (e) => {
-    e.preventDefault();
-    e.returnValue = "";
-  };
 
   return (
-    <div className={styles.main}>
-      <ModalComponent
-        modalOpen={modalOpen}
-        newPlan={newPlan}
-        setModalOpen={setModalOpen}
-        setPlanName={setPlanName}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-        setDateDiff={setDateDiff}
-        setNewPlan={setNewPlan}
-        setSelectedDay={setSelectedDay}
-        setLocationList={setLocationList}
-        dateDiff={dateDiff}
-      />
-      <PlanNavbar
-        planName={planName}
-        startDate={startDate}
-        endDate={endDate}
+    <>
+      <MyPlanNavbar
+        plan={plan}
         dateDiff={dateDiff}
         selectedDay={selectedDay}
-        setModalOpen={setModalOpen}
         setSelectedDay={setSelectedDay}
-        newPlan={newPlan}
       />
       <div className={styles.body}>
         <div>
-          <TravelList
-            selectedDay={selectedDay}
-            locationList={locationList}
-            setLocationList={setLocationList}
-          />
+          <MyTravelList planId={planId} selectedDay={selectedDay}/>
         </div>
         <div>
-          <CreateMap
-            selectedDay={selectedDay}
-            locationList={locationList}
-            setLocationList={setLocationList}
-            setNewPlan={setNewPlan}
-
-          />
+          <MyPlanMap planId={planId} selectedDay={selectedDay} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default NewPlan;
+export default MyPlan;

@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./NewPlan.module.css";
-import { Map, MapTypeControl, ZoomControl } from "react-kakao-maps-sdk";
-import useKakaoLoader from "./useKakaoLoader";
 import searchIcon from "../../assets/searchIcon.png";
 import notFound from "../../assets/image/notFound.svg";
 import addBtn from "../../assets/addBtn.svg";
-import selectedBtn from "../../assets/selectedIcon.svg";
 
 const CreateMap = ({
   selectedDay,
@@ -19,7 +16,7 @@ const CreateMap = ({
     "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
 
   // map은 지도 객체를 저장, places는 검색 결과를 저장
-  const [map, setMap] = useState(null);
+  const mapRef = useRef(null); // useRef 사용
   const [places, setPlaces] = useState([]);
   // inputText는 입력 필드의 현재 값을 추적, searchPlace는 검색할 장소를 저장
   const [inputText, setInputText] = useState("");
@@ -36,64 +33,57 @@ const CreateMap = ({
     setInputText("");
   };
 
-  useEffect(() => {
-    setSearchPlace(" ");
-    if (!searchPlace) {
-      return;
+  const clearMarkers = () => {
+    for (let i = 0; i < mapRef.current.markers.length; i++) {
+      mapRef.current.markers[i].setMap(null);
     }
+    mapRef.current.markers = [];
+  };
 
-    if (map) {
-      for (let i = 0; i < map.markers.length; i++) {
-        map.markers[i].setMap(null);
+  useEffect(() => {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successGeo, failGeo);
+
+      function successGeo(position) {
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        let container = document.getElementById("myMap");
+        let options = {
+          center: new kakao.maps.LatLng(lat, lng),
+          level: 3,
+        };
+        if (!mapRef.current) {
+          mapRef.current = new kakao.maps.Map(container, options);
+          mapRef.current.markers = [];
+        }
       }
-      map.markers = [];
-    } else {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successGeo, failGeo);
 
-        function successGeo(position) {
-          lat = position.coords.latitude;
-          lng = position.coords.longitude;
-          const container = document.getElementById("myMap");
-          const options = {
-            center: new kakao.maps.LatLng(lat, lng),
-            level: 3,
-          };
-          // 지도 객체를 생성하고 map 상태에 저장
-          const newMap = new kakao.maps.Map(container, options);
-          newMap.markers = [];
-          setMap(newMap);
-        }
-
-        function failGeo(event) {
-          console.log("Error Geolocation!");
-          const container = document.getElementById("myMap");
-          const options = {
-            center: new kakao.maps.LatLng(33.4, 126.3),
-            level: 3,
-          };
-          // 지도 객체를 생성하고 map 상태에 저장
-          const newMap = new kakao.maps.Map(container, options);
-          newMap.markers = [];
-          setMap(newMap);
-        }
-      } else {
-        console.log("Not Using Geo");
-        const container = document.getElementById("myMap");
-        const options = {
+      function failGeo(position) {
+        let container = document.getElementById("myMap");
+        let options = {
           center: new kakao.maps.LatLng(33.4, 126.3),
           level: 3,
         };
-        // 지도 객체를 생성하고 map 상태에 저장
-        const newMap = new kakao.maps.Map(container, options);
-        newMap.markers = [];
-        setMap(newMap);
+
+        if (!mapRef.current) {
+          mapRef.current = new kakao.maps.Map(container, options);
+          mapRef.current.markers = [];
+        }
+      }
+    } else {
+      let container = document.getElementById("myMap");
+      let options = {
+        center: new kakao.maps.LatLng(33.4, 126.3),
+        level: 3,
+      };
+
+      if (!mapRef.current) {
+        mapRef.current = new kakao.maps.Map(container, options);
+        mapRef.current.markers = [];
       }
     }
 
     const ps = new kakao.maps.services.Places();
-
-    // 키워드 검색을 수행하고, 결과를 placesSearchCB 콜백 함수에 전달
 
     ps.keywordSearch(searchPlace, placesSearchCB);
 
@@ -105,36 +95,42 @@ const CreateMap = ({
           displayMarker(data[i], i);
           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         }
-        map.setBounds(bounds);
+        mapRef.current.setBounds(bounds);
 
-        // 검색 결과를 places 상태에 저장
         setPlaces(data);
-      }
-      // 검색 결과가 없을 경우 리스트 초기화해주고 중심좌표를 현재 위치로
-      else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+        clearMarkers();
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(successGeo, failGeo);
+
           function successGeo(position) {
             lat = position.coords.latitude;
             lng = position.coords.longitude;
-            map.setCenter(new kakao.maps.LatLng(lat, lng));
-            map.setLevel(3, { anchor: new kakao.maps.LatLng(lat, lng) });
+            mapRef.current.setCenter(new kakao.maps.LatLng(lat, lng));
+            mapRef.current.setLevel(3, {
+              anchor: new kakao.maps.LatLng(lat, lng),
+            });
           }
 
           function failGeo(event) {
             console.log("Error Geolocation!");
-            map.setCenter(new kakao.maps.LatLng(37.537183, 127.005454));
-            map.setLevel(3, {
+            mapRef.current.setCenter(
+              new kakao.maps.LatLng(37.537183, 127.005454)
+            );
+            mapRef.current.setLevel(3, {
               anchor: new kakao.maps.LatLng(37.537183, 127.005454),
             });
           }
         } else {
-          map.setCenter(new kakao.maps.LatLng(37.537183, 127.005454));
+          clearMarkers();
+          mapRef.current.setCenter(
+            new kakao.maps.LatLng(37.537183, 127.005454)
+          );
         }
         setPlaces([]);
       }
     }
-  }, [searchPlace, map]);
+  }, [searchPlace]);
 
   function displayMarker(place, index) {
     let imageSrc = `${markerSource}`, // 마커 이미지 url, 스프라이트 이미지를 씁니다
@@ -146,30 +142,25 @@ const CreateMap = ({
       },
       markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
       marker = new kakao.maps.Marker({
-        map: map,
+        map: mapRef.current,
         position: new kakao.maps.LatLng(place.y, place.x),
         image: markerImage,
       });
-    // let marker = new kakao.maps.Marker({
-    //   map: map,
-    //   position: new kakao.maps.LatLng(place.y, place.x),
-    // });
 
-    // 클릭 이벤트 리스너를 추가하여, 마커 클릭 시 정보 창을 표시
     kakao.maps.event.addListener(marker, "mouseover", function () {
       infowindow.setContent(
         '<div style="padding:5px; font-size:12px;">' +
           place.place_name +
           "</div>"
       );
-      infowindow.open(map, marker);
+      infowindow.open(mapRef.current, marker);
     });
 
     kakao.maps.event.addListener(marker, "mouseout", function () {
       infowindow.close();
     });
 
-    map.markers.push(marker);
+    mapRef.current.markers.push(marker);
   }
 
   const addLocationHandler = (place, day) => {
@@ -244,19 +235,21 @@ const CreateMap = ({
                   <span className={styles.locationAddress}>
                     {item.address_name}
                   </span>
-                
+
                   <div className={styles.locationPhone}>{item.phone}</div>
                 </div>
               </div>
-              <img className={styles.addBtn} src={addBtn} alt="addBtn" 
-                  onClick={() => addLocationHandler(item, selectedDay)}
-                />
-
+              <img
+                className={styles.addBtn}
+                src={addBtn}
+                alt="addBtn"
+                onClick={() => addLocationHandler(item, selectedDay)}
+              />
             </div>
           ))
         ) : (
           <div className={styles.noResultSection}>
-            <img style={{width:"10vw"}} src={notFound} alt="notFound"/>
+            <img style={{ width: "10vw" }} src={notFound} alt="notFound" />
             <div>검색 결과가 없습니다</div>
             <div>다른 키워드로 검색해보세요!</div>
           </div>

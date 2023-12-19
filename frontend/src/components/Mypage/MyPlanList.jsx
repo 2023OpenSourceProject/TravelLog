@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import noResultImage from "../../assets/image/noResult2.png";
 import axios from "axios";
 
-const MyPlan = () => {
+const MyPlanList = () => {
   const token = localStorage.getItem("token");
   const [myPlanlist, setMyPlanList] = useState([]);
   useEffect(() => {
@@ -60,4 +60,4 @@ const MyPlan = () => {
   );
 };
 
-export default MyPlan;
+export default MyPlanList;
