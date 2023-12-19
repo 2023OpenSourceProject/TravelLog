@@ -193,6 +193,7 @@ const CreateMap = ({
         location: place.address_name,
         name: place.place_name,
         category: place.category_group_name,
+        category2: place.category_name,
       };
       newLocationList.push(newPlace);
 
