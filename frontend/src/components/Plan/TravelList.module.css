@@ -1,5 +1,6 @@
 .travelList{
   color: #000;
+  min-height: 740px;
   max-height: 740px;
   font-size: 24px;
   font-style: normal;
