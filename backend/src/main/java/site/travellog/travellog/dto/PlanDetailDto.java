@@ -17,5 +17,6 @@ public class PlanDetailDto {
     private int day;
     private int seq;
     private String category;
+    private String category2;
 
 }
