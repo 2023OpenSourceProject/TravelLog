@@ -103,6 +103,10 @@
   opacity: 50%;
   margin-right: 10px;
 }
+.searchIcon:hover{
+  cursor: pointer;
+  opacity: 100%;
+}
 
 .noResultSection {
   display: flex;
@@ -115,4 +119,10 @@
 
 .addBtn {
   margin-right: 1vw;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  opacity: 1;
+
 }
