@@ -78,6 +78,11 @@
   width: 100px;
 
 }
+
+.day:hover{
+  background-color: rgb(234, 234, 234);
+}
+
 .day > .selectedDay{
 
   background-color: rgb(199, 197, 197);

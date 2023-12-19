@@ -59,4 +59,5 @@
 
 .button:hover {
   background-color: #3d1cbe;
+  cursor: pointer;
 }
