@@ -21,6 +21,7 @@ public class PlanDetail {
     private int day;
     private int seq;
     private String category;
+    private String category2;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="plan_id")
