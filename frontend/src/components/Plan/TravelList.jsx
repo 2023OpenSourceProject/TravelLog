@@ -58,7 +58,7 @@ const TravelList = ({ selectedDay, locationList, setLocationList }) => {
 
   return (
     <>
-      <div onClick={resetLocationsHandler}>장소 초기화</div>
+      <div className={styles.initPlace} onClick={resetLocationsHandler}>장소 초기화</div>
       <ul className={styles.travelList}>
         {locationList.length > 0 ? (
           locationList
