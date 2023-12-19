@@ -186,7 +186,7 @@ const NewReview = () => {
 
             <div className={styles.index}>Select Plan</div>
             <select className={styles.input} onChange={handlePlanChange}>
-              <option value="">리뷰를 선택하세요</option>
+              <option value="">플랜을 선택하세요</option>
               {planList.map((plan) => (
                 <option key={plan.plan_id} value={plan.plan_id}>
                   {plan.title}

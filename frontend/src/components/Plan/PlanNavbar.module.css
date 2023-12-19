@@ -93,7 +93,7 @@
   align-items: center;
   border-width: 0;
   border-radius: 15px;
-  background: #A7A7A7;
+  background: #969595;
 
   color: #FFF;
   text-align: center;
@@ -101,6 +101,11 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
+}
+
+
+.cancleBtn:hover {
+  background-color: #a7a7a7; /* 배경색을 검정색으로 변경 */
 }
 
 .saveBtn{
@@ -121,4 +126,8 @@
   font-style: normal;
   font-weight: 700;
 
+}
+
+.saveBtn:hover {
+  background-color: #58c78e; /* 배경색을 검정색으로 변경 */
 }

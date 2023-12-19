@@ -224,3 +224,7 @@
 .editButton:hover {
   background-color: #45a049; /* 마우스 오버시 버튼 배경색 변경 */
 }
+
+.deleteButton2:hover {
+  background-color: #da190b; /* 마우스 오버시 버튼 배경색 변경 */
+}

@@ -60,6 +60,10 @@
   line-height: 180%; /* 57.6px */
 }
 
+.button_post:hover {
+  background-color: #3d1cbe;
+}
+
 .input_file {
   display: none;
 }
@@ -80,6 +84,10 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.select:hover {
+  background-color: #6e6f8a;
 }
 
 .input {
