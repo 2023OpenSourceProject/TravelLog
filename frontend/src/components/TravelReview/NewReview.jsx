@@ -179,7 +179,7 @@ const NewReview = () => {
                 <img
                   src={selectedImageUrl}
                   alt="Selected"
-                  style={{ width: "100%", height: "auto" }}
+                  style={{ width:"100%", height: "auto" }}
                 />
               )}
               <label htmlFor="file" className={styles.select}>

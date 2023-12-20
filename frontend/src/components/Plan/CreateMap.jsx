@@ -209,20 +209,9 @@ const CreateMap = ({
     );
 
     if (isPlaceAlreadyAdded) {
-      // 이미 추가된 장소라면 locationList에서 해당 장소 제거
-      setLocationList((prevState) =>
-        prevState.filter(
-          (item) => item.name !== place.place_name || item.day !== day
-        )
-      );
-
-      // 이미 추가된 장소라면 addedPlaces에서 해당 장소 제거
-      setAddedPlaces((prevAddedPlaces) =>
-        prevAddedPlaces.filter((placeName) => placeName !== place.place_name)
-      );
+      alert("이미 추가된 장소입니다.");
       return;
     }
-
     setLocationList((prevState) => {
       const newLocationList = [...prevState];
       const newPlace = {
